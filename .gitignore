@@ -6,3 +6,4 @@ word2vec/*
 *.h5
 *.png
 *.pyc
+*.pkl
