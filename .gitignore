@@ -1,0 +1,8 @@
+word2vec/*
+*.txt
+*.xlsx
+*.model
+*.vector
+*.h5
+*.png
+*.pyc
