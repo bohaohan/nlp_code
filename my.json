@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "gene": "LRP16",
+      "target": "ER-alpha",
+      "sentence": "Mutual transrepression occurs between the <span class='gene' id='PS20328'><a href='http://www.uniprot.org/uniprot/PS20328'>estrogen receptor</a></span> (ER) and <span class='gene' id='PSF00302'><a href='http://www.uniprot.org/uniprot/PSF00302'>NF-kappa-B</a></span> in a cell-type specific manner. ",
+      "relation": 1,
+      "weight": 1.0
+    },
+    {
+      "gene": "LRP16",
+      "target": "ER-alpha",
+      "sentence": "Ptm: <span class='gene' id='PS20328'><a href='http://www.uniprot.org/uniprot/PS20328'>Estrogen receptor</a></span> palmitoylated (isoform 3). ",
+      "relation": 1,
+      "weight": 1.0
+    },
+    {
+      "gene": "LRP16",
+      "target": "ER-alpha",
+      "sentence": "Similarity: <span class='gene' id='PS20328'><a href='http://www.uniprot.org/uniprot/PS20328'>Estrogen receptor</a></span> belongs to the nuclear <span class='gene' id='PS04521'><a href='http://www.uniprot.org/uniprot/PS04521'>hormone receptor</a></span> <span class='mesh' id='D005190'><a href='http://www.ncbi.nlm.nih.gov/mesh/?term=D005190'>family</a></span>. ",
+      "relation": 1,
+      "weight": 1.0
+    },
+    {
+      "gene": "LRP16",
+      "target": "ER-alpha",
+      "sentence": "Miscellaneous: <span class='gene' id='PS20328'><a href='http://www.uniprot.org/uniprot/PS20328'>Estrogen receptor</a></span> <span class='mesh' id='D020845'><a href='http://www.ncbi.nlm.nih.gov/mesh/?term=D020845'>selective estrogen receptor modulators</a></span> (SERMs), such as <span class='drug' id='DB00675'><a href='http://www.drugbank.ca/drugs/DB00675'>tamoxifen</a></span>, <span class='drug' id='DB00481'><a href='http://www.drugbank.ca/drugs/DB00481'>raloxifene</a></span>, <span class='drug' id='DB00539'><a href='http://www.drugbank.ca/drugs/DB00539'>toremifene</a></span>, <span class='mesh_compound' id='C111332'><a href='http://en.wikipedia.org/wiki/lasofoxifene'>lasofoxifene</a></span>, <span class='drug' id='DB00882'><a href='http://www.drugbank.ca/drugs/DB00882'>clomifene</a></span>, <span class='mesh_compound' id='C478341'><a href='http://en.wikipedia.org/wiki/femarelle'>femarelle</a></span> and <span class='mesh_compound' id='C508548'><a href='http://en.wikipedia.org/wiki/ormeloxifene'>ormeloxifene</a></span>, have <span class='mesh' id='D014024'><a href='http://www.ncbi.nlm.nih.gov/mesh/?term=D014024'>tissue</a></span> selective agonistic and antagonistic effects on the <span class='gene' id='PS20328'><a href='http://www.uniprot.org/uniprot/PS20328'>estrogen receptor</a></span> (ER). ",
+      "relation": 1,
+      "weight": 1.0
+    }
+  ]
+}

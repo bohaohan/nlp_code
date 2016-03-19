@@ -20,7 +20,7 @@ traindf = pd.read_json(".../train.json")
 traindf['ingredients_clean_string'] = [' , '.join(z).strip() for z in traindf['ingredients'] if z!='salt' and z!='water']
 traindf['ingredients_string'] = [' '.join([WordNetLemmatizer().lemmatize(re.sub('[^A-Za-z]', ' ', line)) for line in lists]).strip() for lists in traindf['ingredients'] if z!='salt' and z!='water']
 
-testdf = pd.read_json(".../test.json")
+testdf = pd.read_json(".../LRP16.json")
 testdf['ingredients_clean_string'] = [' , '.join(z).strip() for z in testdf['ingredients'] if z!='salt' and z!='water']
 testdf['ingredients_string'] = [' '.join([WordNetLemmatizer().lemmatize(re.sub('[^A-Za-z]', ' ', line)) for line in lists]).strip() for lists in testdf['ingredients'] if z!='salt' and z!='water']
 
