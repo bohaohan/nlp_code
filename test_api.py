@@ -32,14 +32,6 @@ def test_search():
     r = requests.get("http://104.197.25.253:8080/polysearch",
                       params={'query': 'LRP16', 'target_type': 'gene', 'query_type': 'gene', 'userkey': user_key},
                       timeout=6000)
-    # r = requests.get(url, timeout=6000)
-    # data1=r.content
-    # print data1
-    # print {'http': line}
-    # sleep(1)
-    # pool = HTTPConnectionPool('http://api.polysearch.ca:8080', retries=False)
-    # r = pool.request('GET', '/polysearch',
-    # fields={'query': 'LRP16', 'target_type': 'gene', 'query_type': 'gene', 'userkey': user_key})
     print r.text
     f.write(r.text)
     print url
