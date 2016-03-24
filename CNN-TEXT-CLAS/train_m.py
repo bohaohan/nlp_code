@@ -7,16 +7,16 @@ import os
 import time
 import datetime
 import data_helpers
-from get_data import input_data
+from get_data_wordv import *
 from text_cnn_m import TextCNN
 
 # Parameters
 # ==================================================
 
 # Model Hyperparameters
-tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
+tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_integer("num_filters", 300, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
@@ -42,24 +42,32 @@ print("")
 
 # Load data
 print("Loading data...")
-x, y, vocabulary, vocabulary_inv = data_helpers.load_data()
-# Randomly shuffle data
-np.random.seed(10)
-shuffle_indices = np.random.permutation(np.arange(len(y)))
-x_shuffled = x[shuffle_indices]
-y_shuffled = y[shuffle_indices]
-# Split train/test set
-# TODO: This is very crude, should use cross-validation
-x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
-y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
-print("Vocabulary Size: {:d}".format(len(vocabulary)))
-print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-x_train, y_train, x_dev, y_dev = input_data()
+# x, y, vocabulary, vocabulary_inv = data_helpers.load_data()
+# # Randomly shuffle data
+# np.random.seed(10)
+# shuffle_indices = np.random.permutation(np.arange(len(y)))
+# x_shuffled = x[shuffle_indices]
+# y_shuffled = y[shuffle_indices]
+# # Split train/test set
+# # TODO: This is very crude, should use cross-validation
+# x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
+# y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
+# print("Vocabulary Size: {:d}".format(len(vocabulary)))
+# print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
+
+x_train, y_train, x_dev, y_dev = input_data_w2v()
+print "end load"
+# print "trans"
+# x_train = np.array(x_train)
+# y_train = np.array(y_train)
+# x_dev = np.array(x_dev)
+# y_dev = np.array(y_dev)
+# print "finish trans"
 #
 # print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])
-x_train = sequence.pad_sequences(x_train, maxlen=maxlen1)
-x_dev = sequence.pad_sequences(x_dev, maxlen=maxlen1)
+# x_train = sequence.pad_sequences(x_train, maxlen=maxlen1)
+# x_dev = sequence.pad_sequences(x_dev, maxlen=maxlen1)
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 # Training
 # ==================================================
@@ -73,10 +81,11 @@ with tf.Graph().as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
             num_classes=2,
-            vocab_size=len(vocabulary),
-            embedding_size=FLAGS.embedding_dim,
+            height=maxlen1,
+            batch_size=64,
+            embedding_size=300,
             filter_sizes=map(int, FLAGS.filter_sizes.split(",")),
-            num_filters=FLAGS.num_filters,
+            num_filters=300,
             l2_reg_lambda=FLAGS.l2_reg_lambda)
 
         # Define Training procedure

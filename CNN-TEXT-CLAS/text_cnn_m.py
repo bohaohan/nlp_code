@@ -8,24 +8,27 @@ class TextCNN(object):
     Uses an embedding layer, followed by a convolutional, max-pooling and softmax layer.
     """
     def __init__(
-      self, sequence_length, num_classes, vocab_size,
-      embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0):
+      self, sequence_length, num_classes, height,
+      embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0, batch_size=64):
 
         # Placeholders for input, output and dropout
-        self.input_x = tf.placeholder(tf.float32, [None, sequence_length], name="input_x")
+        # self.input_x = tf.placeholder(tf.float32, [None, sequence_length], name="input_x")
+        # self.input_x = tf.placeholder(tf.float32, [None, 30000], name="input_x")
+        self.input_x = tf.placeholder(tf.float32, [batch_size, height, embedding_size, 1], name="input_x")
+        # [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3]
         self.input_y = tf.placeholder(tf.float32, [None, num_classes], name="input_y")
         self.dropout_keep_prob = tf.placeholder(tf.float32, name="dropout_keep_prob")
-
+        sentence = self
         # Keeping track of l2 regularization loss (optional)
         l2_loss = tf.constant(0.0)
 
         # Embedding layer
-        with tf.device('/cpu:0'), tf.name_scope("embedding"):
-            W = tf.Variable(
-                tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
-                name="W")
-            self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
-            self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
+        # with tf.device('/cpu:0'), tf.name_scope("embedding"):
+        #     W = tf.Variable(
+        #         tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
+        #         name="W")
+        #     self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
+        #     self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
         # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []
@@ -36,7 +39,7 @@ class TextCNN(object):
                 W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
                 b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b")
                 conv = tf.nn.conv2d(
-                    self.embedded_chars_expanded,
+                    self.input_x,
                     W,
                     strides=[1, 1, 1, 1],
                     padding="VALID",
