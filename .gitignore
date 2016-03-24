@@ -7,3 +7,4 @@ word2vec/*
 *.png
 *.pyc
 *.pkl
+CNN-TEXT-CLAS/runs/*
