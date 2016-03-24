@@ -42,7 +42,9 @@ def load_data_and_labels():
     # Generate labels
     positive_labels = [[0, 1] for _ in positive_examples]
     negative_labels = [[1, 0] for _ in negative_examples]
+    print positive_labels
     y = np.concatenate([positive_labels, negative_labels], 0)
+    print y[0]
     return [x_text, y]
 
 

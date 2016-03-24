@@ -8,7 +8,7 @@ import time
 import datetime
 import data_helpers
 from get_data import input_data
-from text_cnn import TextCNN
+from text_cnn_m import TextCNN
 
 # Parameters
 # ==================================================
