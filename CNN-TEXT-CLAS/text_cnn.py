@@ -59,11 +59,11 @@ class TextCNN(object):
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(3, pooled_outputs)
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
-
+        print "before drop out", self.h_pool_flat.get_shape()
         # Add dropout
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
-
+            print "after drop out", self.h_drop.get_shape()
         # Final (unnormalized) scores and predictions
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name="W")
