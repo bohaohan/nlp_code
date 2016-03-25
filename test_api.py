@@ -36,4 +36,6 @@ def test_search():
     f.write(r.text)
     print url
 if __name__ == "__main__":
-    test_search()
+    # test_search()
+    import numpy
+    print numpy.version.version

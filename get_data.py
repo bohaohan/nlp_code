@@ -7,7 +7,7 @@ import jieba
 
 
 def input_data():
-    train_file = "3.17data.txt"
+    train_file = "3.25-data.txt"
     test_file = "test.txt"
 
     train_words = []
