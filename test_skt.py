@@ -129,7 +129,7 @@ def main():
         # print i
 
 def test():
-    train_file = "3.17data.txt"
+    train_file = "3.25-data.txt"
     test_file = "test.txt"
     train_word, train_tag, test_words, test_tags = input_data(train_file, test_file)
     # print test_tags

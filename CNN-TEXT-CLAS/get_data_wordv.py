@@ -33,7 +33,7 @@ def pad_sentences(sentences, padding_word=0):
 
 
 def input_data():
-    train_file = "3.17data.txt"
+    train_file = "3.25-data.txt"
     test_file = "test.txt"
 
     train_words = []
@@ -87,7 +87,7 @@ def input_data():
     return X, Y, test_words, test_tags
 
 
-def input_data_w2v(train_file="3.17data.txt", split=0.1):
+def input_data_w2v(train_file="3.25-data.txt", split=0.1):
 
     model = get_word2vec()
     train_words = []
