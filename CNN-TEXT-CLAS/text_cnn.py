@@ -27,6 +27,7 @@ class TextCNN(object):
             self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
             self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
+        print self.embedded_chars_expanded.get_shape()
         # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []
         for i, filter_size in enumerate(filter_sizes):
@@ -51,7 +52,9 @@ class TextCNN(object):
                     padding='VALID',
                     name="pool")
                 pooled_outputs.append(pooled)
-
+        print pooled_outputs[0].get_shape()
+        print pooled_outputs[1].get_shape()
+        print pooled_outputs[2].get_shape()
         # Combine all the pooled features
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(3, pooled_outputs)
