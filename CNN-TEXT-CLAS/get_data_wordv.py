@@ -105,9 +105,6 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
                     x.append(model[word].reshape(300, 1))
                 else:
                     x.append(np.zeros([300, ], dtype=np.float32).reshape(300, 1))
-                # words += i + " "
-            # words = words[:len(words)-1].encode('utf8')
-            # x = one_hot(n=10000, text=words)
 
             try:
                 tag = tks[1]
@@ -135,14 +132,10 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
     for i, j in enumerate(train_words):
         if i < test_len:
             test_words[i] = train_words[index[i]]
-            # test_words.append(train_words[index[i]])
-            # test_tags.append(train_tags[index[i]])
             test_tags[i] = train_tags[index[i]]
         else:
             X[i - test_len] = train_words[index[i]]
             Y[i - test_len] = train_tags[index[i]]
-            # X.append(train_words[index[i]])
-            # Y.append(train_tags[index[i]])
 
     # with open(test_file, 'r') as f1:
     #     for line in f1:

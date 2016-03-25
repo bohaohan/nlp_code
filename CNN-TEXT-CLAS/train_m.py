@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-from keras.preprocessing import sequence
 
 import tensorflow as tf
 import numpy as np
@@ -22,7 +21,7 @@ tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_integer("num_epochs", 200, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("num_epochs", 1000, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
@@ -82,7 +81,7 @@ with tf.Graph().as_default():
             sequence_length=x_train.shape[1],
             num_classes=2,
             height=maxlen1,
-            batch_size=64,
+            batch_size=FLAGS.batch_size,
             embedding_size=300,
             filter_sizes=map(int, FLAGS.filter_sizes.split(",")),
             num_filters=300,
@@ -171,13 +170,18 @@ with tf.Graph().as_default():
             zip(x_train, y_train), FLAGS.batch_size, FLAGS.num_epochs)
         # Training loop. For each batch...
         for batch in batches:
-            x_batch, y_batch = zip(*batch)
-            train_step(x_batch, y_batch)
-            current_step = tf.train.global_step(sess, global_step)
-            if current_step % FLAGS.evaluate_every == 0:
-                print("\nEvaluation:")
-                dev_step(x_dev, y_dev, writer=dev_summary_writer)
-                print("")
-            if current_step % FLAGS.checkpoint_every == 0:
-                path = saver.save(sess, checkpoint_prefix, global_step=current_step)
-                print("Saved model checkpoint to {}\n".format(path))
+            try:
+                x_batch, y_batch = zip(*batch)
+                # if x_batch.shape[1] != FLAGS.batch_size:
+                #     pass
+                train_step(x_batch, y_batch)
+                current_step = tf.train.global_step(sess, global_step)
+                if current_step % FLAGS.evaluate_every == 0:
+                    print("\nEvaluation:")
+                    dev_step(x_dev, y_dev, writer=dev_summary_writer)
+                    print("")
+                if current_step % FLAGS.checkpoint_every == 0:
+                    path = saver.save(sess, checkpoint_prefix, global_step=current_step)
+                    print("Saved model checkpoint to {}\n".format(path))
+            except Exception as e:
+                print e.message

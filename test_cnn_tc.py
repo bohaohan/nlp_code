@@ -25,7 +25,7 @@ embedding_dims = 100
 nb_filter = 250
 filter_length = 3
 hidden_dims = 250
-nb_epoch = 30
+nb_epoch = 100
 
 print('Loading data...')
 # (X_train, y_train), (X_test, y_test) = imdb.load_data(nb_words=max_features,
