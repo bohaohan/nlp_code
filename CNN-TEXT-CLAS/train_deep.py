@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #! /usr/bin/env python
 
 import tensorflow as tf
@@ -185,3 +186,5 @@ with tf.Graph().as_default():
                     print("Saved model checkpoint to {}\n".format(path))
             except Exception as e:
                 print e.message
+=======
+>>>>>>> 204029e368dae655d84bf25a05971e251a4a9597
