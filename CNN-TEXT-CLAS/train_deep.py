@@ -85,7 +85,7 @@ with tf.Graph().as_default():
             batch_size=FLAGS.batch_size,
             embedding_size=300,
             filter_sizes=map(int, FLAGS.filter_sizes.split(",")),
-            num_filters=300,
+            num_filters=100,
             l2_reg_lambda=FLAGS.l2_reg_lambda)
 
         # Define Training procedure
