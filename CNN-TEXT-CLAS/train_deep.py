@@ -21,9 +21,9 @@ tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (defau
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
 # Training parameters
-tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
+tf.flags.DEFINE_integer("batch_size", 32, "Batch Size (default: 64)")
 tf.flags.DEFINE_integer("num_epochs", 1000, "Number of training epochs (default: 200)")
-tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
+tf.flags.DEFINE_integer("evaluate_every", 10, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -166,6 +166,27 @@ with tf.Graph().as_default():
             if writer:
                 writer.add_summary(summaries, step)
 
+        def batch_dev_step(x_batch, y_batch, writer=None):
+            """
+            Evaluates model on a dev set
+            """
+            batches = data_helpers.batch_iter(
+            zip(x_batch, y_batch), FLAGS.batch_size, 1)
+            for batch in batches:
+                x_batch, y_batch = zip(*batch)
+                feed_dict = {
+                  cnn.input_x: x_batch,
+                  cnn.input_y: y_batch,
+                  cnn.dropout_keep_prob: 1.0
+                }
+                step, summaries, loss, accuracy = sess.run(
+                    [global_step, dev_summary_op, cnn.loss, cnn.accuracy],
+                    feed_dict)
+                time_str = datetime.datetime.now().isoformat()
+                print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+                if writer:
+                    writer.add_summary(summaries, step)
+
         # Generate batches
         batches = data_helpers.batch_iter(
             zip(x_train, y_train), FLAGS.batch_size, FLAGS.num_epochs)
@@ -179,7 +200,7 @@ with tf.Graph().as_default():
                 current_step = tf.train.global_step(sess, global_step)
                 if current_step % FLAGS.evaluate_every == 0:
                     print("\nEvaluation:")
-                    dev_step(x_dev, y_dev, writer=dev_summary_writer)
+                    batch_dev_step(x_dev, y_dev, writer=dev_summary_writer)
                     print("")
                 if current_step % FLAGS.checkpoint_every == 0:
                     path = saver.save(sess, checkpoint_prefix, global_step=current_step)
