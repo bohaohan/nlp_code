@@ -54,6 +54,8 @@ def input_data():
                 words += i + " "
             words = words[:len(words)-1].encode('utf8')
             x = one_hot(n=10000, text=words)
+            if len(x) > 300:
+                print len(x)
             try:
                 tag = tks[1]
                 if tag == "预警\n":
@@ -98,6 +100,7 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
             tks = line.split('\t', 1)
             word = tks[0]
             words = jieba.cut(word, cut_all=True)
+
             x = []
             # words = ""
             for word in words:
@@ -106,6 +109,8 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
                 else:
                     x.append(np.zeros([300, ], dtype=np.float32).reshape(300, 1))
 
+            if len(x) > 500:
+                continue
             try:
                 tag = tks[1]
                 if tag == "预警\n":
@@ -160,4 +165,4 @@ def get_word2vec():
 if __name__ == "__main__":
     X, Y, test_words, test_tags = input_data_w2v()
     # X = np.array(X, dtype=np.float32)
-    print X[0]
+    # print X[0]
