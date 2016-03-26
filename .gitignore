@@ -8,3 +8,4 @@ word2vec/*
 *.pyc
 *.pkl
 CNN-TEXT-CLAS/runs/*
+runs/*
