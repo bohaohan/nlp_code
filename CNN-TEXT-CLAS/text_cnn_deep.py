@@ -31,14 +31,17 @@ class TextCNN(object):
         #     self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
         # Create a convolution + maxpool layer for each filter size
+        num_filters1 = 50
+        num_filters2 = 80
+        num_filters3 = 100
         print "input size", height, embedding_size, 1
         pooled_outputs = []
         for i, filter_size in enumerate(filter_sizes):
             with tf.name_scope("conv-maxpool-%s" % filter_size):
                 # Convolution Layer
-                filter_shape = [filter_size, 101, 1, num_filters]
+                filter_shape = [filter_size, 101, 1, num_filters1]
                 W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
-                b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b")
+                b = tf.Variable(tf.constant(0.1, shape=[num_filters1]), name="b")
                 conv = tf.nn.conv2d(
                     self.input_x,
                     W,
@@ -58,9 +61,9 @@ class TextCNN(object):
                 print filter_size, "pooling1", pooled.get_shape()
 
                 # second convelution-pooling layer
-                filter_shape2 = [filter_size, 101, num_filters, num_filters]
+                filter_shape2 = [filter_size, 101, num_filters1, num_filters2]
                 W2 = tf.Variable(tf.truncated_normal(filter_shape2, stddev=0.1), name="W2")
-                b2 = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b2")
+                b2 = tf.Variable(tf.constant(0.1, shape=[num_filters2]), name="b2")
                 conv2 = tf.nn.conv2d(
                     pooled,
                     W2,
@@ -79,9 +82,9 @@ class TextCNN(object):
                     name="pool2")
                 print filter_size, "pooling2", pooled2.get_shape()
                  # third convelution-pooling layer
-                filter_shape3 = [filter_size, 100, num_filters, num_filters]
+                filter_shape3 = [filter_size, 100, num_filters2, num_filters3]
                 W3 = tf.Variable(tf.truncated_normal(filter_shape3, stddev=0.1), name="W3")
-                b3 = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b3")
+                b3 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b3")
                 conv3 = tf.nn.conv2d(
                     pooled2,
                     W3,
@@ -106,12 +109,12 @@ class TextCNN(object):
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(3, pooled_outputs)
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
-        print "before drop out", self.h_pool_flat.get_shape()
+        # print "before drop out", self.h_pool_flat.get_shape()
         # Add dropout
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
 
-        print "after drop out", self.h_drop.get_shape()
+        # print "after drop out", self.h_drop.get_shape()
         # Final (unnormalized) scores and predictions
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name="W")
