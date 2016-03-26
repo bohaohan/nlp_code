@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import tensorflow as tf
 import numpy as np
 
@@ -134,5 +134,4 @@ class TextCNN(object):
         with tf.name_scope("accuracy"):
             correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
             self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, "float"), name="accuracy")
-=======
->>>>>>> 204029e368dae655d84bf25a05971e251a4a9597
+
