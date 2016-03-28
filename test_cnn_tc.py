@@ -5,7 +5,7 @@ Get to 0.835 test accuracy after 2 epochs. 100s/epoch on K520 GPU.
 
 from __future__ import print_function
 import numpy as np
-from get_data import input_data
+from get_data import input_data, input_data_gen
 
 np.random.seed(1337)  # for reproducibility
 
@@ -25,12 +25,12 @@ embedding_dims = 100
 nb_filter = 250
 filter_length = 3
 hidden_dims = 250
-nb_epoch = 100
+nb_epoch = 50
 
 print('Loading data...')
 # (X_train, y_train), (X_test, y_test) = imdb.load_data(nb_words=max_features,
 #                                                       test_split=0.2)
-X_train, y_train, X_test, y_test = input_data()
+X_train, y_train, X_test, y_test = input_data_gen()
 print(len(X_train), 'train sequences')
 print(len(X_test), 'test sequences')
 
@@ -68,32 +68,32 @@ model.add(Dropout(0.25))
 model.add(Activation('relu'))
 
 # We project onto a single unit output layer, and squash it with a sigmoid:
-model.add(Dense(1))
+model.add(Dense(3))
 model.add(Activation('sigmoid'))
 
-model.compile(loss='binary_crossentropy',
+model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
-              class_mode='binary')
+              class_mode='categorical')
 model.fit(X_train, y_train, batch_size=batch_size,
           nb_epoch=nb_epoch, show_accuracy=True,
           validation_data=(X_test, y_test))
-# score, acc = model.evaluate(X_test, y_test,
-#                             batch_size=batch_size,
-#                             show_accuracy=True)
+score, acc = model.evaluate(X_test, y_test,
+                            batch_size=batch_size,
+                            show_accuracy=True)
 # print(y_test)
 # print(model.predict_classes(X_test))
 # # model.evaluate()
-# print('Test score:', score)
-# print('Test accuracy:', acc)
-c = model.predict_classes(X_test)
-total = 0
-true = 0
-for i, j in enumerate(c):
-    if y_test[i] == c[i][0]:
-        true += 1
-    total += 1
-print ("test")
-print (true)
-print (total)
-print (float(true)/float(total))
-model.save_weights('rnn_w3.17.h5')
+print('Test score:', score)
+print('Test accuracy:', acc)
+# c = model.predict_classes(X_test)
+# total = 0
+# true = 0
+# for i, j in enumerate(c):
+#     if y_test[i] == c[i][0]:
+#         true += 1
+#     total += 1
+# print ("test")
+# print (true)
+# print (total)
+# print (float(true)/float(total))
+model.save_weights('rnn_w3.26.h5')

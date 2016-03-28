@@ -5,6 +5,7 @@ import sys
 import cPickle
 import jieba
 import numpy
+import numpy as np
 from sklearn import metrics
 from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction.text import HashingVectorizer, TfidfVectorizer, TfidfTransformer
@@ -13,6 +14,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.svm import LinearSVC
 from sklearn.svm import SVC
 import random
+import nltk
+import skflow
 
 import sys
 reload(sys)
@@ -46,10 +49,44 @@ def input_data(train_file, test_file):
             test_tags.append(tag)
     return train_words, train_tags, test_words, test_tags
 
+def input_data_gen(train_file, test_file):
+
+    train_file = "gene-data.txt"
+    test_file = "gene-data.txt"
+    train_words = []
+    train_tags = []
+    test_words = []
+    test_tags = []
+    with open(train_file, 'r') as f1:
+        for line in f1:
+            tks = line.split('-0-')
+            word = tks[0]
+            try:
+                tag = tks[1]
+                if tag == "+":
+                    tag = 0
+                elif tag == "-":
+                    tag = 1
+                else:
+                    tag = 2
+                train_words.append(word)
+                train_tags.append(tag)
+            except:
+                pass
+    train_tags = np.concatenate([train_tags], 0)
+    with open(test_file, 'r') as f1:
+        for line in f1:
+            tks = line.split('-0-', 1)
+            word = tks[0]
+            tag = tks[1]
+            test_words.append(word)
+            test_tags.append(tag)
+    return train_words, train_tags, test_words, test_tags
+
 
 # with open('stopwords.txt', 'r') as f:
 #     stopwords = set([w.strip() for w in f])
-comma_tokenizer = lambda x: jieba.cut(x, cut_all=True)
+comma_tokenizer = lambda x: nltk.word_tokenize(x)
 
 
 def vectorize(train_words, test_words):
@@ -76,10 +113,14 @@ def train_clf(train_data, train_tags):
 
 def train_svm(train_data, train_tags):
     # classifier = LinearSVC(C=0.5, penalty="l2", dual=False)
-    classifier = LinearSVC()
+    # classifier = LinearSVC()
+    random.seed(42)
+    classifier = skflow.TensorFlowDNNClassifier(hidden_units=[10, 20, 10],
+    n_classes=3, batch_size=32, steps=5000, learning_rate=0.05)
     # classifier = SVC(kernel="linear")
     # classifier = MultinomialNB(alpha=0.000001)
-    classifier.fit(train_data, train_tags)
+
+    classifier.fit(train_data.toarray(), train_tags)
     return classifier
 
 
@@ -131,7 +172,7 @@ def main():
 def test():
     train_file = "3.25-data.txt"
     test_file = "test.txt"
-    train_word, train_tag, test_words, test_tags = input_data(train_file, test_file)
+    train_word, train_tag, test_words, test_tags = input_data_gen(train_file, test_file)
     # print test_tags
     # train_words, test_words, train_tags, test_tags = train_test_split(train_words, train_tags, test_size=0.30, random_state=42)
     # print test_tags
@@ -143,9 +184,13 @@ def test():
         train_words, train_tags, test_words, test_tags = split_data(train_word, train_tag, i)
         # print len(train_words), len(test_words)
         train_data, test_data = vectorize(train_words, test_words)
+        # train_data = numpy.array(train_data)
+        train_tags = numpy.array(train_tags)
+        # test_words = numpy.array(test_words)
+        test_tags = numpy.array(test_tags)
         clf = train_svm(train_data, train_tags)
         # cPickle.dump(clf, open("svm.pkl", "wb"))
-        pred = clf.predict(test_data)
+        pred = clf.predict(test_data.toarray())
         # print pred[0].encode('utf8')
         # evaluate(numpy.asarray(test_tags), pred)
         # print pred
@@ -153,7 +198,7 @@ def test():
         k = 0
         al = 0
         for i, j in enumerate(pred):
-            if pred[i].encode('utf8') == test_tags[i].encode('utf8'):
+            if pred[i] == test_tags[i]:
                 k += 1
             al += 1
             all += 1
