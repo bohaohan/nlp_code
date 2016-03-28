@@ -2,16 +2,16 @@ from keras.models import Sequential
 from keras.layers import Merge, LSTM, Dense, Convolution2D, MaxPooling2D, Activation, Dropout, Flatten
 from keras.utils import np_utils
 import numpy as np
-from get_data import input_data_gen_w2v2
+from get_data import input_data_gen_w2v2, input_data_gen_w2v3
 
 filter_sizes = [2, 3, 4, 5]
-nb_classes = 3
+nb_classes = 2
 batch_size = 16
-np_epoch = 30
+np_epoch = 6000
 nb_filter = 300
 word_vec_len = 300
 
-x_train, y_train, x_val, y_val = input_data_gen_w2v2()
+x_train, y_train, x_val, y_val = input_data_gen_w2v3()
 # x_train, y_train, x_val, y_val = [],[],[],[]
 # generate dummy training data
 # x_train = np.random.random((1000, 1, 55, 300))
@@ -23,8 +23,8 @@ x_train, y_train, x_val, y_val = input_data_gen_w2v2()
 # # x_val_b = np.random.random((100, timesteps, data_dim))
 # y_val = np.random.random((100, nb_classes))
 
-y_train = np_utils.to_categorical(y_train, 3)
-y_val = np_utils.to_categorical(y_val, 3)
+y_train = np_utils.to_categorical(y_train, nb_classes)
+y_val = np_utils.to_categorical(y_val, nb_classes)
 se_len = len(x_train[0][0])
 # se_len = 55
 # print x_train.shape
