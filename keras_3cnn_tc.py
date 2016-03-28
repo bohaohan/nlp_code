@@ -6,14 +6,30 @@ from get_data import input_data_gen_w2v2
 
 
 nb_classes = 3
-# x_train, y_train, x_val, y_val = input_data_gen_w2v2()
-x_train, y_train, x_val, y_val = [],[],[],[]
+batch_size = 16
+np_epoch = 30
+
+x_train, y_train, x_val, y_val = input_data_gen_w2v2()
+# x_train, y_train, x_val, y_val = [],[],[],[]
+# generate dummy training data
+# x_train = np.random.random((1000, 1, 55, 300))
+# # x_train_b = np.random.random((1000, timesteps, data_dim))
+# y_train = np.random.random((1000, nb_classes))
+#
+# # generate dummy validation data
+# x_val = np.random.random((100, 1, 55, 300))
+# # x_val_b = np.random.random((100, timesteps, data_dim))
+# y_val = np.random.random((100, nb_classes))
+
 y_train = np_utils.to_categorical(y_train, 3)
 y_val = np_utils.to_categorical(y_val, 3)
-# se_len = len(x_train[0])
-se_len = 55
+se_len = len(x_train[0])
+# se_len = 55
 # print x_train.shape
-
+print x_train.shape, "x sh"
+print x_val.shape, "xv sh"
+print y_train.shape, "y sh"
+print y_val.shape, "yv sh"
 encoder_a = Sequential()
 encoder_a.add(Convolution2D(nb_filter=300, nb_row=3, nb_col=300, border_mode='valid', input_shape=(1, se_len, 300), activation="relu"))
 encoder_a.add(Activation('relu'))
@@ -34,7 +50,7 @@ decoder = Sequential()
 decoder.add(Merge([encoder_a, encoder_b, encoder_c], mode='concat'))
 decoder.add(Flatten())
 decoder.add(Dropout(0.5))
-decoder.add(Dense(32, activation='relu'))
+decoder.add(Dense(16, activation='relu'))
 decoder.add(Dense(nb_classes, activation='softmax'))
 
 decoder.compile(loss='categorical_crossentropy', optimizer='rmsprop')
@@ -50,5 +66,5 @@ decoder.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 # y_val = np.random.random((100, nb_classes))
 
 decoder.fit([x_train, x_train, x_train], y_train,
-            batch_size=64, nb_epoch=30, show_accuracy=True,
+            batch_size=batch_size, nb_epoch=np_epoch, show_accuracy=True,
             validation_data=([x_val, x_val, x_val], y_val))

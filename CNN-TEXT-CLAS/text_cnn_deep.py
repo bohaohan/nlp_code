@@ -53,7 +53,7 @@ class TextCNN(object):
                 h = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
                 print filter_size, "before pooling", h.get_shape()
                 # Maxpooling over the outputs
-                pooled = tf.nn.avg_pool(
+                pooled = tf.nn.max_pool(
                     h,
                     ksize=[1, 2, 1, 1],
                     strides=[1, 2, 1, 1],
@@ -114,7 +114,7 @@ class TextCNN(object):
                 # Apply nonlinearity
                 h = tf.nn.relu(tf.nn.bias_add(conv3, b3), name="relu3")
                 # Maxpooling over the outputs
-                pooled3 = tf.nn.avg_pool(
+                pooled3 = tf.nn.max_pool(
                     h,
                     ksize=[1, (((sequence_length - filter_size + 1)/2) - filter_size + 1), 1, 1],
                     strides=[1, 1, 1, 1],
