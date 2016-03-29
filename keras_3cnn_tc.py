@@ -6,9 +6,9 @@ from get_data import input_data_gen_w2v2, input_data_gen_w2v3
 
 filter_sizes = [2, 3, 4, 5]
 nb_classes = 2
-batch_size = 16
-np_epoch = 6000
-nb_filter = 300
+batch_size = 64
+np_epoch = 100
+nb_filter = 100
 word_vec_len = 300
 
 x_train, y_train, x_val, y_val = input_data_gen_w2v3()
