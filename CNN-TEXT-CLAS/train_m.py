@@ -14,14 +14,14 @@ from text_cnn_m import TextCNN
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 300, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_string("filter_sizes", "2,3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
+tf.flags.DEFINE_integer("num_filters", 100, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_integer("num_epochs", 1000, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("num_epochs", 10000, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
@@ -54,7 +54,8 @@ print("Loading data...")
 # print("Vocabulary Size: {:d}".format(len(vocabulary)))
 # print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 
-x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+x_train, y_train, x_dev, y_dev = input_data_w2v()
 print "end load"
 # print "trans"
 # x_train = np.array(x_train)
@@ -79,7 +80,7 @@ with tf.Graph().as_default():
     with sess.as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
-            num_classes=3,
+            num_classes=2,
             height=maxlen1,
             batch_size=FLAGS.batch_size,
             embedding_size=300,
