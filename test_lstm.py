@@ -40,8 +40,9 @@ print("Pad sequences (samples x time)")
 X_train = sequence.pad_sequences(X_train, maxlen=maxlen)
 X_test = sequence.pad_sequences(X_test, maxlen=maxlen)
 print('X_train shape:', X_train.shape)
+#(samples, dim)
 print('X_test shape:', X_test.shape)
-
+#Y  1, 0
 print('Build model...')
 model = Sequential()
 # model.add(Embedding(max_features, 128, input_length=maxlen, dropout=0.5))
