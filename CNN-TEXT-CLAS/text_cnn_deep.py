@@ -32,8 +32,8 @@ class TextCNN(object):
         #     self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
         # Create a convolution + maxpool layer for each filter size
-        num_filters1 = 50
-        num_filters2 = 50
+        num_filters1 = 5
+        num_filters2 = 5
         num_filters3 = num_filters
         print "input size", height, embedding_size, 1
         pooled_outputs = []
