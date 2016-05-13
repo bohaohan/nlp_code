@@ -214,6 +214,17 @@ def get_word2vec():
 
 
 if __name__ == "__main__":
-    X, Y, test_words, test_tags = input_data_gen_w2v()
+    # X, Y, test_words, test_tags = input_data_gen_w2v()
     # X = np.array(X, dtype=np.float32)
-    print X[0]
+    # print X[0]
+    train_file="gene-data.txt"
+    with open(train_file, 'r') as f1:
+        for line in f1:
+            tks = line.split('-0-')
+            word = tks[0]
+            word1 = tks[3]
+            word2 = tks[2]
+            words = nltk.word_tokenize(word)
+            print words
+            print word1, word2
+            break

@@ -52,9 +52,9 @@ class TextCNN(object):
                     padding='VALID',
                     name="pool")
                 pooled_outputs.append(pooled)
-        print pooled_outputs[0].get_shape()
-        print pooled_outputs[1].get_shape()
-        print pooled_outputs[2].get_shape()
+        # print pooled_outputs[0].get_shape()
+        # print pooled_outputs[1].get_shape()
+        # print pooled_outputs[2].get_shape()
         # Combine all the pooled features
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(3, pooled_outputs)

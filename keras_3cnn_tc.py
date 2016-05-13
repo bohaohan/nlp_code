@@ -1,5 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Merge, LSTM, Dense, Convolution2D, MaxPooling2D, Activation, Dropout, Flatten
+
 from keras.utils import np_utils
 import numpy as np
 from get_data import input_data_gen_w2v2, input_data_gen_w2v3
