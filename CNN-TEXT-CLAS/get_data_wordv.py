@@ -10,7 +10,10 @@ import numpy as np
 import sys
 import nltk
 from os import path
+reload(sys)
+sys.setdefaultencoding("utf8")
 sys.path.append("..")
+
 PATH = path.dirname(path.abspath(__file__))
 PATH = PATH[:PATH.rfind('/')]
 _W2V_BINARY_PATH = PATH + "/word2vec/GoogleNews-vectors-negative300.bin"
@@ -146,7 +149,7 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
     return X, Y, test_words, test_tags
 
 
-def input_data_gen_w2v(train_file="gene-data.txt", split=0.1):
+def input_data_gen_w2v(train_file="total-data.txt", split=0.1):
 
     model = get_word2vec()
     train_words = []
@@ -159,9 +162,12 @@ def input_data_gen_w2v(train_file="gene-data.txt", split=0.1):
             words = nltk.word_tokenize(word)
 
             x = []
-            # words = ""
             for word in words:
-                if word in model:
+                if word == "GENE1GENE1":
+                    x.append(np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                elif word == "GENE2GENE2":
+                    x.append(-np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                elif word in model:
                     x.append(model[word].reshape(300, 1))
                 else:
                     x.append(np.zeros([300, ], dtype=np.float32).reshape(300, 1))
@@ -217,14 +223,48 @@ if __name__ == "__main__":
     # X, Y, test_words, test_tags = input_data_gen_w2v()
     # X = np.array(X, dtype=np.float32)
     # print X[0]
-    train_file="gene-data.txt"
+    train_file = "total-data.txt"
+    n = 0
+    n1 = 0
+    n2 = 0
+    err = 0
+    # result = "total-data.txt"
+    # r = open(result, "w+")
     with open(train_file, 'r') as f1:
         for line in f1:
+            print "line", n
+            line = line.decode('utf-8')
+            n += 1
             tks = line.split('-0-')
             word = tks[0]
-            word1 = tks[3]
-            word2 = tks[2]
+            word2 = tks[3]
+            word1 = tks[2]
+            # print word1, word2
+            # word = word.lower().replace(word1, "gene1")
+            #
+            # word = word.lower().replace(word2, "gene2")
             words = nltk.word_tokenize(word)
-            print words
-            print word1, word2
-            break
+            # # print words
+            has1 = False
+            has2 = False
+            for word in words:
+                if word == "GENE1GENE1" and not has1:
+                    # print "n1", n1
+                    n1 += 1
+                    has1 = True
+                elif word == "GENE2GENE2" and not has2:
+                    # print "n2", n2
+                    n2 += 1
+                    has2 = True
+            if not has1 or not has2:
+                err += 1
+                print err
+
+                print words
+                print word1, word2
+            # else:
+            #     r.write(line)
+            # print word1, word2
+            # print words
+            # print word1, word2
+            # break
