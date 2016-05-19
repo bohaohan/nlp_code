@@ -157,6 +157,7 @@ def input_data_gen_w2v(train_file="total-data.txt", split=0.1):
 
     with open(train_file, 'r') as f1:
         for line in f1:
+            line = line.decode('utf-8')
             tks = line.split('-0-')
             word = tks[0]
             words = nltk.word_tokenize(word)
