@@ -42,7 +42,7 @@ class TextCNN(object):
         for i, filter_size in enumerate(filter_sizes):
             with tf.name_scope("conv-maxpool-%s" % filter_size):
                 # Convolution Layer size1
-                filter_shape = [filter_size, 21, 1, num_filters1]
+                filter_shape = [filter_size, 101, 1, num_filters1]
                 W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
                 b = tf.Variable(tf.constant(0.1, shape=[num_filters1]), name="b")
                 conv = tf.nn.conv2d(
@@ -64,7 +64,7 @@ class TextCNN(object):
 
                 # Convolution layer 2
 
-                filter_shape2 = [2, 21, num_filters1, num_filters2]
+                filter_shape2 = [2, 101, num_filters1, num_filters2]
                 W2 = tf.Variable(tf.truncated_normal(filter_shape2, stddev=0.1), name="W1")
                 b2 = tf.Variable(tf.constant(0.1, shape=[num_filters2]), name="b2")
                 conv = tf.nn.conv2d(
@@ -138,7 +138,7 @@ class TextCNN(object):
                 #     name="pool3")
                 #  # third convelution-pooling layer
 
-                filter_shape3 = [1, 79, num_filters2, num_filters3]
+                filter_shape3 = [1, 49, num_filters2, num_filters3]
                 W3 = tf.Variable(tf.truncated_normal(filter_shape3, stddev=0.1), name="W3")
                 b3 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b3")
                 conv3 = tf.nn.conv2d(
