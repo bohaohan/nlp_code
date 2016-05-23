@@ -21,8 +21,8 @@ tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (defau
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
 # Training parameters
-tf.flags.DEFINE_integer("batch_size", 32, "Batch Size (default: 32)")
-tf.flags.DEFINE_integer("num_epochs", 100, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 32)")
+tf.flags.DEFINE_integer("num_epochs", 200, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
@@ -175,7 +175,7 @@ with tf.Graph().as_default():
             t_acc = 0.0
             t_acc = float(t_acc)
             t = 0
-            f_r = open("result7.txt", "a+")
+            f_r = open("result8.txt", "a+")
             step1 = 0
             for batch in batches:
                 x_batch, y_batch = zip(*batch)
