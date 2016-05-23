@@ -8,7 +8,7 @@ import time
 import datetime
 import data_helpers
 from get_data_wordv import *
-from text_cnn_ge import TextCNN
+from text_cnn_2d_m import TextCNN
 
 # Parameters
 # ==================================================
