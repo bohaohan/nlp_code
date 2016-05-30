@@ -16,13 +16,13 @@ from text_cnn_2d_m import TextCNN
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "5,3,4", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 32, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_integer("num_filters", 20, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 32)")
-tf.flags.DEFINE_integer("num_epochs", 200, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("num_epochs", 500, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
@@ -175,7 +175,7 @@ with tf.Graph().as_default():
             t_acc = 0.0
             t_acc = float(t_acc)
             t = 0
-            f_r = open("result8.txt", "a+")
+            f_r = open("result12.txt", "a+")
             step1 = 0
             for batch in batches:
                 x_batch, y_batch = zip(*batch)
