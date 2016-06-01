@@ -213,9 +213,6 @@ def input_data_gen_w2v(train_file="total-data.txt", split=0.1):
 def get_word2vec():
     print "load model"
     model = gensim.models.Word2Vec.load_word2vec_format(_W2V_BINARY_PATH, binary=True)
-    # positive = model['positive']
-    # print positive
-    # print len(positive)
     print "finish load"
     return model
 
@@ -263,9 +260,3 @@ if __name__ == "__main__":
 
                 print words
                 print word1, word2
-            # else:
-            #     r.write(line)
-            # print word1, word2
-            # print words
-            # print word1, word2
-            # break

@@ -11,6 +11,7 @@ def pad_sentences(sentences, padding_word=0):
     Pads all sentences to the same length. The length is defined by the longest sentence.
     Returns padded sentences.
     """
+    print len(sentences)
     sequence_length = max(len(x) for x in sentences)
     padded_sentences = []
     for i in range(len(sentences)):
@@ -19,6 +20,52 @@ def pad_sentences(sentences, padding_word=0):
         new_sentence = sentence + [padding_word] * num_padding
         padded_sentences.append(new_sentence)
     return padded_sentences
+
+def input_data_gen():
+    train_file = "total-data.txt"
+    train_words = []
+    train_tags = []
+
+    X = []
+    Y = []
+
+    test_words = []
+    test_tags = []
+    with open(train_file, 'r') as f1:
+        for line in f1:
+
+            # line = line.decode('utf-8')
+            tks = line.split('-0-')
+            # print tks
+            word = tks[0]
+            x = one_hot(n=10000, text=word)
+            # try:
+            # print tks
+            tag = tks[1]
+            if tag == "+":
+                tag = [1, 0, 0]
+            elif tag == "-":
+                tag = [0, 1, 0]
+            else:
+                tag = [0, 0, 1]
+            train_words.append(x)
+            train_tags.append(tag)
+            # except Exception as e:
+            #     print e.message
+    # print train_words[0]
+    index = [i for i in range(len(train_words))]
+    train_words = pad_sentences(train_words)
+    train_tags = np.concatenate([train_tags], 0)
+    random.shuffle(index)
+    for i, j in enumerate(train_words):
+        if i < 0.1 * len(train_words):
+            test_words.append(train_words[index[i]])
+            test_tags.append(train_tags[index[i]])
+        else:
+            X.append(train_words[index[i]])
+            Y.append(train_tags[index[i]])
+
+    return X, Y, test_words, test_tags
 
 
 def input_data():
@@ -77,5 +124,5 @@ def input_data():
 
 
 if __name__ == "__main__":
-    X, Y, test_words, test_tags = input_data()
+    X, Y, test_words, test_tags = input_data_gen()
     print X[0]

@@ -51,8 +51,8 @@ def input_data(train_file, test_file):
 
 def input_data_gen(train_file, test_file):
 
-    train_file = "gene-data.txt"
-    test_file = "gene-data.txt"
+    train_file = "gene-data1.txt"
+    test_file = "gene-data1.txt"
     train_words = []
     train_tags = []
     test_words = []
@@ -112,15 +112,15 @@ def train_clf(train_data, train_tags):
     return clf
 
 def train_svm(train_data, train_tags):
-    # classifier = LinearSVC(C=0.5, penalty="l2", dual=False)
+    classifier = LinearSVC(C=0.5, penalty="l2", dual=False)
     # classifier = LinearSVC()
-    random.seed(42)
-    classifier = skflow.TensorFlowDNNClassifier(hidden_units=[10, 20, 10],
-    n_classes=3, batch_size=32, steps=5000, learning_rate=0.05)
+    # random.seed(42)
+    # classifier = skflow.TensorFlowDNNClassifier(hidden_units=[10, 20, 10],
+    # n_classes=3, batch_size=32, steps=10000, learning_rate=0.05)
     # classifier = SVC(kernel="linear")
     # classifier = MultinomialNB(alpha=0.000001)
-
-    classifier.fit(train_data.toarray(), train_tags)
+    classifier.fit(train_data, train_tags)
+    # classifier.fit(train_data.toarray(), train_tags)
     return classifier
 
 

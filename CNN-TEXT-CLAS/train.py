@@ -7,7 +7,7 @@ import os
 import time
 import datetime
 import data_helpers
-from get_data import input_data
+from get_data import *
 from text_cnn import TextCNN
 
 # Parameters
@@ -54,7 +54,8 @@ x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
 y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
 print("Vocabulary Size: {:d}".format(len(vocabulary)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-x_train, y_train, x_dev, y_dev = input_data()
+x_train, y_train, x_dev, y_dev = input_data_gen()
+
 #
 # print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])
@@ -72,7 +73,7 @@ with tf.Graph().as_default():
     with sess.as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
-            num_classes=2,
+            num_classes=3,
             vocab_size=len(vocabulary),
             embedding_size=FLAGS.embedding_dim,
             filter_sizes=map(int, FLAGS.filter_sizes.split(",")),
