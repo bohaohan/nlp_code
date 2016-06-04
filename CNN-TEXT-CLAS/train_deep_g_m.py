@@ -7,7 +7,7 @@ import os
 import time
 import datetime
 import data_helpers
-from get_data_wordv import *
+#from get_data_wordv import *
 from text_cnn_ge import TextCNN
 from pkl_test import load_data
 
