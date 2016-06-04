@@ -2,20 +2,20 @@ import random
 import numpy as np
 __author__ = 'bohaohan'
 import cPickle
-from get_data_wordv import input_data_gen_w2v
+# from get_data_wordv import input_data_gen_w2v
 import csv
 
 file_name = "data.pkl"
 
 
-def write_file():
-    x_train, y_train, x_dev, y_dev = input_data_gen_w2v(split=0)
-
-    print len(x_train), len(y_train)
-    data = []
-    data.append(x_train)
-    data.append(y_train)
-    cPickle.dump(data, open("./pkl/data.pkl", "wb"))
+# def write_file():
+#     x_train, y_train, x_dev, y_dev = input_data_gen_w2v(split=0)
+#
+#     print len(x_train), len(y_train)
+#     data = []
+#     data.append(x_train)
+#     data.append(y_train)
+#     cPickle.dump(data, open("./pkl/data.pkl", "wb"))
 
 
 def load_data(split=0.1):
