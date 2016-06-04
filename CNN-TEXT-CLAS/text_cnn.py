@@ -64,6 +64,15 @@ class TextCNN(object):
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
             print "after drop out", self.h_drop.get_shape()
+
+        # with tf.name_scope("fullyConnected"):
+        #     # Fully connected layer
+        #     W = tf.Variable(tf.truncated_normal([num_filters_total, 256], stddev=0.1), name="W")
+        #     b = tf.Variable(tf.constant(0.1, shape=[256]), name="b")
+        #     dense1 = tf.reshape(self.h_drop, [-1, W.get_shape().as_list()[0]]) # Reshape conv2 output to fit dense layer input
+        #     dense1 = tf.nn.relu(tf.add(tf.matmul(dense1, W), b)) # Relu activation
+        #     dense1 = tf.nn.dropout(dense1, self.dropout_keep_prob) # Apply Dropout
+
         # Final (unnormalized) scores and predictions
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name="W")
