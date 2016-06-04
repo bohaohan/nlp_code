@@ -88,35 +88,35 @@ class TextCNN(object):
 
                 print filter_size, "before pooling", relu2.get_shape()
                 # Maxpooling over the outputs
-                # pooled = tf.nn.max_pool(
-                #     relu1,
-                #     ksize=[1, 2, 1, 1],
-                #     strides=[1, 2, 1, 1],
-                #     padding='VALID',
-                #     name="pool")
+                pooled = tf.nn.max_pool(
+                    relu2,
+                    ksize=[1, 2, 2, 1],
+                    strides=[1, 2, 2, 1],
+                    padding='VALID',
+                    name="pool")
 
                 # Convolution pooling
 
-                filter_shape_cm = [2, 2, num_filters2, num_filters2]
-                W_cm = tf.Variable(tf.truncated_normal(filter_shape_cm, stddev=0.1), name="W1")
-                b_cm = tf.Variable(tf.constant(0.1, shape=[num_filters2]), name="b2")
-                conv_cm = tf.nn.conv2d(
-                    relu2,
-                    W_cm,
-                    strides=[1, 2, 2, 1],
-                    padding="VALID",
-                    name="conv")
-
-                # Apply BatchNormalization
-
-                ewma_cm = tf.train.ExponentialMovingAverage(decay=0.99)
-                bn_cm = BN(num_filters2, 0.001, ewma_cm, True)
-                update_assignments = bn_cm.get_assigner()
-                bn_cm_o = bn_cm.normalize(conv_cm, train=True)
-
-                pooled = tf.nn.relu(tf.nn.bias_add(bn_cm_o, b_cm), name="relu")
-
-                print filter_size, "pooling1", pooled.get_shape()
+                # filter_shape_cm = [2, 2, num_filters2, num_filters2]
+                # W_cm = tf.Variable(tf.truncated_normal(filter_shape_cm, stddev=0.1), name="W1")
+                # b_cm = tf.Variable(tf.constant(0.1, shape=[num_filters2]), name="b2")
+                # conv_cm = tf.nn.conv2d(
+                #     relu2,
+                #     W_cm,
+                #     strides=[1, 2, 2, 1],
+                #     padding="VALID",
+                #     name="conv")
+                #
+                # # Apply BatchNormalization
+                #
+                # ewma_cm = tf.train.ExponentialMovingAverage(decay=0.99)
+                # bn_cm = BN(num_filters2, 0.001, ewma_cm, True)
+                # update_assignments = bn_cm.get_assigner()
+                # bn_cm_o = bn_cm.normalize(conv_cm, train=True)
+                #
+                # pooled = tf.nn.relu(tf.nn.bias_add(bn_cm_o, b_cm), name="relu")
+                #
+                # print filter_size, "pooling1", pooled.get_shape()
 
                 #  # third convelution-pooling layer
                 # filter_shape3 = [filter_size, 100, num_filters2, num_filters3]
@@ -167,34 +167,33 @@ class TextCNN(object):
                 # if filter_size == 3:
                 #     w = 3
 
-                # pooled3 = tf.nn.max_pool(
-                #     relu3,
-                #     # ksize=[1, 2, 15, 1],
-                #     ksize=[1, w, 15, 1],
-                #     strides=[1, 2, 1, 1],
-                #     padding='VALID',
-                #     name="pool3")
-
-                # pooled3 = tf.nn.top_k(relu3, 10, sorted=False, name="k-max-pooling")
-                filter_shape_cm2 = [w, 2, num_filters3, num_filters3]
-                W_cm2 = tf.Variable(tf.truncated_normal(filter_shape_cm2, stddev=0.1), name="W1")
-                b_cm2 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b2")
-                conv_cm2 = tf.nn.conv2d(
+                pooled3 = tf.nn.max_pool(
                     relu3,
-                    W_cm2,
-                    strides=[1, 2, 2, 1],
-                    padding="VALID",
-                    name="conv")
+                    # ksize=[1, 2, 15, 1],
+                    ksize=[1, w, 2, 1],
+                    strides=[1, 2, 1, 1],
+                    padding='VALID',
+                    name="pool3")
 
-                # Apply BatchNormalization
-
-                ewma_cm2 = tf.train.ExponentialMovingAverage(decay=0.99)
-                bn_cm2 = BN(num_filters3, 0.001, ewma_cm2, True)
-                update_assignments = bn_cm2.get_assigner()
-                bn_cm_o2 = bn_cm2.normalize(conv_cm2, train=True)
-
-                pooled3 = tf.nn.relu(tf.nn.bias_add(bn_cm_o2, b_cm2), name="relu")
-                print pooled3.get_shape()
+                # filter_shape_cm2 = [w, 2, num_filters3, num_filters3]
+                # W_cm2 = tf.Variable(tf.truncated_normal(filter_shape_cm2, stddev=0.1), name="W1")
+                # b_cm2 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b2")
+                # conv_cm2 = tf.nn.conv2d(
+                #     relu3,
+                #     W_cm2,
+                #     strides=[1, 2, 2, 1],
+                #     padding="VALID",
+                #     name="conv")
+                #
+                # # Apply BatchNormalization
+                #
+                # ewma_cm2 = tf.train.ExponentialMovingAverage(decay=0.99)
+                # bn_cm2 = BN(num_filters3, 0.001, ewma_cm2, True)
+                # update_assignments = bn_cm2.get_assigner()
+                # bn_cm_o2 = bn_cm2.normalize(conv_cm2, train=True)
+                #
+                # pooled3 = tf.nn.relu(tf.nn.bias_add(bn_cm_o2, b_cm2), name="relu")
+                # print pooled3.get_shape()
                 pooled_outputs.append(pooled3)
 
         print pooled_outputs[0].get_shape()
