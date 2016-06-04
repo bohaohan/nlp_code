@@ -9,6 +9,7 @@ import datetime
 import data_helpers
 from get_data_wordv import *
 from text_cnn_ge import TextCNN
+from pkl_test import load_data
 
 # Parameters
 # ==================================================
@@ -56,7 +57,8 @@ print("Loading data...")
 # print("Vocabulary Size: {:d}".format(len(vocabulary)))
 # print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 
-x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+x_train, y_train, x_dev, y_dev = load_data()
 print "end load"
 # print "trans"
 # x_train = np.array(x_train)
