@@ -194,12 +194,12 @@ class TextCNN(object):
                 bn_cm_o2 = bn_cm2.normalize(conv_cm2, train=True)
 
                 pooled3 = tf.nn.relu(tf.nn.bias_add(bn_cm_o2, b_cm2), name="relu")
-
+                print pooled3.get_shape()
                 pooled_outputs.append(pooled3)
 
         print pooled_outputs[0].get_shape()
         print pooled_outputs[1].get_shape()
-        print pooled_outputs[2].get_shape()
+        #print pooled_outputs[2].get_shape()
         sum = 0
         for i in pooled_outputs:
             sum += i.get_shape()[1].value
@@ -211,20 +211,20 @@ class TextCNN(object):
         # Add dropout
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
-
+        print self.h_drop.get_shape()
         with tf.name_scope("fullyConnected"):
             # Fully connected layer
-            W = tf.Variable(tf.truncated_normal([num_filters_total, 512], stddev=0.1), name="W")
-            b = tf.Variable(tf.constant(0.1, shape=[512]), name="b")
+            W = tf.Variable(tf.truncated_normal([num_filters_total, 1024], stddev=0.1), name="W")
+            b = tf.Variable(tf.constant(0.1, shape=[1024]), name="b")
             self.dense1 = tf.reshape(self.h_drop, [-1, W.get_shape().as_list()[0]]) # Reshape conv2 output to fit dense layer input
             self.dense1 = tf.matmul(self.dense1, W)
             # Apply BatchNormalization
 
             ewma = tf.train.ExponentialMovingAverage(decay=0.99)
-            bn = NBN(512, 0.001, ewma, True)
+            bn = NBN(1024, 0.001, ewma, True)
             update_assignments = bn.get_assigner()
-            bn1 = bn.normalize(self.dense1, train=True)
-
+            bn1 = bn.normalize(tf.reshape(self.dense1, [-1, 1, 1, self.dense1.get_shape()[1].value]), train=True)
+            bn1 = tf.reshape(bn1, [-1, bn1.get_shape()[3].value])
 
             # relu1 = tf.nn.relu(tf.nn.bias_add(bn1, b), name="relu")
 
@@ -232,7 +232,7 @@ class TextCNN(object):
             # self.dense1 = tf.nn.dropout(self.dense1, self.dropout_keep_prob) # Apply Dropout
 
         with tf.name_scope("output"):
-            W = tf.Variable(tf.truncated_normal([512, num_classes], stddev=0.1), name="W")
+            W = tf.Variable(tf.truncated_normal([1024, num_classes], stddev=0.1), name="W")
             b = tf.Variable(tf.constant(0.1, shape=[num_classes]), name="b")
             l2_loss += tf.nn.l2_loss(W)
             l2_loss += tf.nn.l2_loss(b)
