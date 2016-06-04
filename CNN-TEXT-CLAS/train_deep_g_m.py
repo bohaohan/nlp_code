@@ -8,20 +8,21 @@ import time
 import datetime
 import data_helpers
 from get_data_wordv import *
-from text_cnn_2d_m import TextCNN
+from text_cnn_ge import TextCNN
 
 # Parameters
 # ==================================================
 
 # Model Hyperparameters
+file_name = "result_fc_53.txt"
 tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_string("filter_sizes", "7,5", "Comma-separated filter sizes (default: '3,4,5')")
+tf.flags.DEFINE_string("filter_sizes", "5,3", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 20, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
 # Training parameters
-tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 32)")
+tf.flags.DEFINE_integer("batch_size", 32, "Batch Size (default: 32)")
 tf.flags.DEFINE_integer("num_epochs", 500, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
@@ -174,8 +175,10 @@ with tf.Graph().as_default():
             zip(x_batch, y_batch), FLAGS.batch_size, 1)
             t_acc = 0.0
             t_acc = float(t_acc)
+            t_loss = 0.0
+            t_loss = float(t_loss)
             t = 0
-            f_r = open("result_53.txt", "a+")
+            f_r = open(file_name, "a+")
             step1 = 0
             for batch in batches:
                 x_batch, y_batch = zip(*batch)
@@ -190,12 +193,13 @@ with tf.Graph().as_default():
                 time_str = datetime.datetime.now().isoformat()
                 print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
                 t_acc += accuracy
+                t_loss += loss
                 t += 1
                 step1 = step
                 if writer:
                     writer.add_summary(summaries, step)
-            f_r.write(str(step1) + " step " + " accuracy " + str(t_acc/t) + "\n")
-            print "total ", t_acc/t
+            f_r.write(str(step1) + " step " + " accuracy " + str(t_acc/t) + " loss " + str(t_loss/t) + "\n")
+            print "total ", t_acc/t, "loss", t_loss/t
 
         # Generate batches
         batches = data_helpers.batch_iter(
