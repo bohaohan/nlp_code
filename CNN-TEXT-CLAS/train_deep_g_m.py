@@ -58,7 +58,11 @@ print("Loading data...")
 # print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 
 # x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
-x_train, y_train, x_dev, y_dev = load_data()
+try:
+    x_train, y_train, x_dev, y_dev = load_data()
+except:
+    from get_data_wordv import *
+    x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
 print "end load"
 # print "trans"
 # x_train = np.array(x_train)
