@@ -2,6 +2,7 @@
 import tensorflow as tf
 import numpy as np
 from ConvolutionalBatchNormalizer import ConvolutionalBatchNormalizer as BN
+from NormalBatchNormalizer import NormalBatchNormalizer as NBN
 
 
 class TextCNN(object):
@@ -211,15 +212,31 @@ class TextCNN(object):
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
 
-        # print "after drop out", self.h_drop.get_shape()
-        # Final (unnormalized) scores and predictions
+        with tf.name_scope("fullyConnected"):
+            # Fully connected layer
+            W = tf.Variable(tf.truncated_normal([num_filters_total, 512], stddev=0.1), name="W")
+            b = tf.Variable(tf.constant(0.1, shape=[512]), name="b")
+            self.dense1 = tf.reshape(self.h_drop, [-1, W.get_shape().as_list()[0]]) # Reshape conv2 output to fit dense layer input
+            self.dense1 = tf.matmul(self.dense1, W)
+            # Apply BatchNormalization
+
+            ewma = tf.train.ExponentialMovingAverage(decay=0.99)
+            bn = NBN(512, 0.001, ewma, True)
+            update_assignments = bn.get_assigner()
+            bn1 = bn.normalize(self.dense1, train=True)
+
+
+            # relu1 = tf.nn.relu(tf.nn.bias_add(bn1, b), name="relu")
+
+            self.dense1 = tf.nn.relu(tf.add(bn1, b))  # Relu activation
+            # self.dense1 = tf.nn.dropout(self.dense1, self.dropout_keep_prob) # Apply Dropout
 
         with tf.name_scope("output"):
-            W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name="W")
+            W = tf.Variable(tf.truncated_normal([512, num_classes], stddev=0.1), name="W")
             b = tf.Variable(tf.constant(0.1, shape=[num_classes]), name="b")
             l2_loss += tf.nn.l2_loss(W)
             l2_loss += tf.nn.l2_loss(b)
-            self.scores = tf.nn.xw_plus_b(self.h_drop, W, b, name="scores")
+            self.scores = tf.nn.xw_plus_b(self.dense1, W, b, name="scores")
             self.predictions = tf.argmax(self.scores, 1, name="predictions")
 
         # CalculateMean cross-entropy loss
