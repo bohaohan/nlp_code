@@ -16,7 +16,7 @@ from text_cnn_1d_single_save_one_hot import TextCNN
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 20, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
@@ -54,8 +54,8 @@ x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
 y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
 print("Vocabulary Size: {:d}".format(len(vocabulary)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-# x_train, y_train, x_dev, y_dev = input_data_gen()
-x_train, y_train, x_dev, y_dev = get_input_data()
+x_train, y_train, x_dev, y_dev = input_data_gen()
+# x_train, y_train, x_dev, y_dev = get_input_data()
 num_classes = 2
 #
 # print('Pad sequences (samples x time)')

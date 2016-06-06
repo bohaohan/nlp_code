@@ -215,4 +215,4 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 if __name__ == "__main__":
     x_train, y_train, x_dev, y_dev = get_input_data()
-    print y_train
+    print y_dev
