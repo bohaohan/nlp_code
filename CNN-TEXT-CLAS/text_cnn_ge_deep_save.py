@@ -133,7 +133,7 @@ class TextCNN(object):
                 #     name="pool3")
                 #  # third convelution-pooling layer
 
-                filter_shape3 = [1, 49, num_filters2, num_filters3]
+                filter_shape3 = [1, 27, num_filters2, num_filters3]
                 W3 = tf.Variable(tf.truncated_normal(filter_shape3, stddev=0.1), name="W3")
                 b3 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b3")
                 conv3 = tf.nn.conv2d(
