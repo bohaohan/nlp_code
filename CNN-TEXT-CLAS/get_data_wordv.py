@@ -210,6 +210,122 @@ def input_data_gen_w2v(train_file="total-data.txt", split=0.1):
 
     return X, Y, test_words, test_tags
 
+
+def get_label_rm(label):
+    if label == "+":
+        label = [1, 0]
+    else:
+        label = [0, 1]
+    return label
+
+
+def get_label_qa(label):
+    qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
+    tag = [0 for i in range(6)]
+    index = qa_labels.index(label)
+    tag[index] = 1
+    return tag
+
+
+def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_func=get_label_rm):
+
+
+    model = get_word2vec()
+    train_words = []
+    train_tags = []
+    test_len = 0
+    train_len = 0
+    if test_file is not None:
+        with open(test_file, 'r') as f1:
+
+            for line in f1:
+                line = line.decode('utf-8')
+                tks = line.split('-0-')
+                word = tks[0]
+                words = nltk.word_tokenize(word)
+
+                x = []
+                for word in words:
+                    if word == "GENE1GENE1":
+                        x.append(np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                    elif word == "GENE2GENE2":
+                        x.append(-np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                    elif word in model:
+                        x.append(model[word].reshape(300, 1))
+                    else:
+                        x.append(np.zeros([300, ], dtype=np.float32).reshape(300, 1))
+
+                if len(x) > 500:
+                    continue
+                try:
+                    tag = label_func(tks[1])
+
+                    train_words.append(x)
+                    train_tags.append(tag)
+                except:
+                    pass
+        test_len = len(train_words)
+
+    with open(train_file, 'r') as f1:
+
+        for line in f1:
+            line = line.decode('utf-8')
+            tks = line.split('-0-')
+            word = tks[0]
+            words = nltk.word_tokenize(word)
+
+            x = []
+            for word in words:
+                if word == "GENE1GENE1":
+                    x.append(np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                elif word == "GENE2GENE2":
+                    x.append(-np.ones([300, ], dtype=np.float32).reshape(300, 1))
+                elif word in model:
+                    x.append(model[word].reshape(300, 1))
+                else:
+                    x.append(np.zeros([300, ], dtype=np.float32).reshape(300, 1))
+
+            if len(x) > 500:
+                continue
+            try:
+                tag = label_func(tks[1])
+
+                train_words.append(x)
+                train_tags.append(tag)
+            except:
+                pass
+    # print train_words[0]
+    index = [i for i in range(len(train_words))]
+    print "padding"
+    train_words = pad_sentences(train_words)
+    train_tags = np.concatenate([train_tags], 0)
+    print "end padding"
+
+    if test_file is None:
+        random.shuffle(index)
+        test_len = int(split * len(train_words))
+
+    train_len = len(train_words) - test_len
+
+
+
+
+    test_words = np.zeros([test_len + 1, len(train_words[0]), 300, 1], dtype=np.float32)
+    test_tags = np.zeros([test_len + 1, 3], dtype=np.float32)
+    X = np.zeros([train_len, len(train_words[0]), 300, 1], dtype=np.float32)
+    Y = np.zeros([train_len, 3], dtype=np.float32)
+    for i, j in enumerate(train_words):
+        if i < test_len:
+            test_words[i] = train_words[index[i]]
+            test_tags[i] = train_tags[index[i]]
+        else:
+            X[i - test_len] = train_words[index[i]]
+            Y[i - test_len] = train_tags[index[i]]
+
+
+
+    return X, Y, test_words, test_tags
+
 def get_word2vec():
     print "load model"
     model = gensim.models.Word2Vec.load_word2vec_format(_W2V_BINARY_PATH, binary=True)

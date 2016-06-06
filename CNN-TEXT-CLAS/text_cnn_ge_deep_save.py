@@ -1,44 +1,38 @@
-
 import tensorflow as tf
 import numpy as np
 from ConvolutionalBatchNormalizer import ConvolutionalBatchNormalizer as BN
-
 
 class TextCNN(object):
     """
     A CNN for text classification.
     Uses an embedding layer, followed by a convolutional, max-pooling and softmax layer.
-    3 4 5 32Batch size
+    1D one hot
     """
-    def __init__(self, sequence_length, num_classes, height,
-                 embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0, batch_size=64):
+    def __init__(
+      self, sequence_length, num_classes, vocab_size,
+      embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0):
 
         # Placeholders for input, output and dropout
-        # self.input_x = tf.placeholder(tf.float32, [None, sequence_length], name="input_x")
-        # self.input_x = tf.placeholder(tf.float32, [None, 30000], name="input_x")
-
-        # [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3]
-
-        self.input_x = tf.placeholder(tf.float32, [None, height, embedding_size, 1], name="input_x")
+        self.input_x = tf.placeholder(tf.int32, [None, sequence_length], name="input_x")
         self.input_y = tf.placeholder(tf.float32, [None, num_classes], name="input_y")
         self.dropout_keep_prob = tf.placeholder(tf.float32, name="dropout_keep_prob")
-        sentence = self
+
         # Keeping track of l2 regularization loss (optional)
         l2_loss = tf.constant(0.0)
 
         # Embedding layer
-        # with tf.device('/cpu:0'), tf.name_scope("embedding"):
-        #     W = tf.Variable(
-        #         tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
-        #         name="W")
-        #     self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
-        #     self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
-
-        # Create a convolution + pool layer for each filter size
         num_filters1 = 8
         num_filters2 = 16
         num_filters3 = num_filters
-        print "input size", height, embedding_size, 1
+        with tf.device('/cpu:0'), tf.name_scope("embedding"):
+            W = tf.Variable(
+                tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
+                name="W")
+            self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
+            self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
+
+        print self.embedded_chars_expanded.get_shape()
+        # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []
         for i, filter_size in enumerate(filter_sizes):
             with tf.name_scope("conv-maxpool-%s" % filter_size):
@@ -196,25 +190,28 @@ class TextCNN(object):
                 pooled3 = tf.nn.relu(tf.nn.bias_add(bn_cm_o2, b_cm2), name="relu")
 
                 pooled_outputs.append(pooled3)
-
-        print pooled_outputs[0].get_shape()
-        print pooled_outputs[1].get_shape()
-        print pooled_outputs[2].get_shape()
-        sum = 0
-        for i in pooled_outputs:
-            sum += i.get_shape()[1].value
+        # print pooled_outputs[0].get_shape()
+        # print pooled_outputs[1].get_shape()
+        # print pooled_outputs[2].get_shape()
         # Combine all the pooled features
-        num_filters_total = num_filters * sum
-        self.h_pool = tf.concat(1, pooled_outputs)
+        num_filters_total = num_filters * len(filter_sizes)
+        self.h_pool = tf.concat(3, pooled_outputs)
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
-        # print "before drop out", self.h_pool_flat.get_shape()
+        print "before drop out", self.h_pool_flat.get_shape()
         # Add dropout
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
+            print "after drop out", self.h_drop.get_shape()
 
-        # print "after drop out", self.h_drop.get_shape()
+        # with tf.name_scope("fullyConnected"):
+        #     # Fully connected layer
+        #     W = tf.Variable(tf.truncated_normal([num_filters_total, 256], stddev=0.1), name="W")
+        #     b = tf.Variable(tf.constant(0.1, shape=[256]), name="b")
+        #     dense1 = tf.reshape(self.h_drop, [-1, W.get_shape().as_list()[0]]) # Reshape conv2 output to fit dense layer input
+        #     dense1 = tf.nn.relu(tf.add(tf.matmul(dense1, W), b)) # Relu activation
+        #     dense1 = tf.nn.dropout(dense1, self.dropout_keep_prob) # Apply Dropout
+
         # Final (unnormalized) scores and predictions
-
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name="W")
             b = tf.Variable(tf.constant(0.1, shape=[num_classes]), name="b")
@@ -232,7 +229,3 @@ class TextCNN(object):
         with tf.name_scope("accuracy"):
             correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
             self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, "float"), name="accuracy")
-
-
-
-
