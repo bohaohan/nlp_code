@@ -38,6 +38,7 @@ print("\nParameters:")
 for attr, value in sorted(FLAGS.__flags.iteritems()):
     print("{}={}".format(attr.upper(), value))
 print("")
+
 file_name = "result_gene_deep_one_hot.txt"
 
 # Data Preparatopn
