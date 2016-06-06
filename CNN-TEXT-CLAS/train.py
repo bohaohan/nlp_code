@@ -56,7 +56,7 @@ print("Vocabulary Size: {:d}".format(len(vocabulary)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 x_train, y_train, x_dev, y_dev = input_data_gen()
 # x_train, y_train, x_dev, y_dev = get_input_data()
-num_classes = 2
+num_classes = 3
 #
 # print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])
