@@ -22,7 +22,7 @@ tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_integer("num_epochs", 300, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("num_epochs", 400, "Number of training epochs (default: 200)")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 # Misc Parameters
@@ -54,9 +54,10 @@ x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
 y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
 print("Vocabulary Size: {:d}".format(len(vocabulary)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-x_train, y_train, x_dev, y_dev = input_data_gen()
+# x_train, y_train, x_dev, y_dev = input_data_gen()
 # x_train, y_train, x_dev, y_dev = get_input_data()
-num_classes = 3
+x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
+num_classes = 6
 #
 # print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])

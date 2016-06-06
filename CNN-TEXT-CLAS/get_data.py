@@ -134,10 +134,10 @@ def get_label_rm(label):
 
 
 def get_label_qa(label):
-    qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
+    # qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
     tag = [0 for i in range(6)]
-    index = qa_labels.index(label)
-    tag[index] = 1
+    # index = qa_labels.index(label)
+    tag[int(label)] = 1
     return tag
 
 
@@ -155,7 +155,6 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
                 line = line.replace("\n", "")
                 tks = line.split('-0-')
                 word = tks[0]
-                print word
                 x = one_hot(n=10000, text=word)
 
                 if len(x) > 500:
@@ -214,5 +213,5 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 
 if __name__ == "__main__":
-    x_train, y_train, x_dev, y_dev = get_input_data()
-    print y_dev
+    x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
+    print len(y_dev)
