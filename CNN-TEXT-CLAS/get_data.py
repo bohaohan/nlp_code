@@ -3,7 +3,7 @@ import random
 from keras.preprocessing.text import one_hot
 
 __author__ = 'bohaohan'
-import jieba
+# import jieba
 import numpy as np
 
 def pad_sentences(sentences, padding_word=0):
@@ -84,7 +84,7 @@ def input_data():
         for line in f1:
             tks = line.split('\t', 1)
             word = tks[0]
-            word = jieba.cut(word, cut_all=True)
+            # word = jieba.cut(word, cut_all=True)
             words = ""
             for i in word:
                 words += i + " "
