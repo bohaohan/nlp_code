@@ -194,7 +194,11 @@ class TextCNN(object):
         # print pooled_outputs[1].get_shape()
         # print pooled_outputs[2].get_shape()
         # Combine all the pooled features
-        num_filters_total = num_filters * len(filter_sizes)
+        sum = 0
+        for i in pooled_outputs:
+            sum += i.get_shape()[1].value
+        # Combine all the pooled features
+        num_filters_total = num_filters * sum
         self.h_pool = tf.concat(3, pooled_outputs)
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
         print "before drop out", self.h_pool_flat.get_shape()
