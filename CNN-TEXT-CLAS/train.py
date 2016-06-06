@@ -35,7 +35,7 @@ print("\nParameters:")
 for attr, value in sorted(FLAGS.__flags.iteritems()):
     print("{}={}".format(attr.upper(), value))
 print("")
-
+file_name = "result_gene_single_one_hot.txt"
 
 # Data Preparatopn
 # ==================================================
@@ -145,6 +145,9 @@ with tf.Graph().as_default():
             """
             Evaluates model on a dev set
             """
+
+            f_r = open(file_name, "a+")
+
             feed_dict = {
               cnn.input_x: x_batch,
               cnn.input_y: y_batch,
@@ -156,6 +159,9 @@ with tf.Graph().as_default():
             time_str = datetime.datetime.now().isoformat()
 
             print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+
+            f_r.write("{}: step {}, loss {:g}, acc {:g}\n".format(time_str, step, loss, accuracy))
+
             if writer:
                 writer.add_summary(summaries, step)
 
