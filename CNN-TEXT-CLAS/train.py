@@ -39,7 +39,7 @@ for attr, value in sorted(FLAGS.__flags.iteritems()):
     print("{}={}".format(attr.upper(), value))
 print("")
 
-file_name = "result_gene_deep_one_hot.txt"
+file_name = "result_rm_deep_one_hot.txt"
 
 # Data Preparatopn
 # ==================================================
@@ -58,10 +58,10 @@ x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
 y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
 print("Vocabulary Size: {:d}".format(len(vocabulary)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-x_train, y_train, x_dev, y_dev = input_data_gen()
-# x_train, y_train, x_dev, y_dev = get_input_data()
+# x_train, y_train, x_dev, y_dev = input_data_gen()
+x_train, y_train, x_dev, y_dev = get_input_data()
 # x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
-num_classes = 3
+num_classes = 2
 #
 # print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])
