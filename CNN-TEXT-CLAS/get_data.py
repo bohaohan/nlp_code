@@ -143,7 +143,8 @@ def get_label_qa(label):
 
 def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_func=get_label_rm):
 
-
+    X = []
+    Y = []
     train_words = []
     train_tags = []
     test_len = 0
@@ -151,9 +152,10 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
         with open(test_file, 'r') as f1:
 
             for line in f1:
-                line = line.decode('utf-8')
+                line = line
                 tks = line.split('-0-')
                 word = tks[0]
+                print word
                 x = one_hot(n=10000, text=word)
 
                 if len(x) > 500:
@@ -170,9 +172,10 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
     with open(train_file, 'r') as f1:
 
         for line in f1:
-            line = line.decode('utf-8')
+            line = line
             tks = line.split('-0-')
             word = tks[0]
+
             x = one_hot(n=10000, text=word)
 
             if len(x) > 500:
@@ -211,5 +214,5 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 
 if __name__ == "__main__":
-    X, Y, test_words, test_tags = input_data_gen()
-    print X[0]
+    x_train, y_train, x_dev, y_dev = get_input_data()
+    print x_train[0]
