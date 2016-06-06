@@ -152,7 +152,7 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
         with open(test_file, 'r') as f1:
 
             for line in f1:
-                line = line
+                line = line.replace("\n", "")
                 tks = line.split('-0-')
                 word = tks[0]
                 print word
@@ -172,7 +172,7 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
     with open(train_file, 'r') as f1:
 
         for line in f1:
-            line = line
+            line = line.replace("\n", "")
             tks = line.split('-0-')
             word = tks[0]
 
@@ -215,4 +215,4 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 if __name__ == "__main__":
     x_train, y_train, x_dev, y_dev = get_input_data()
-    print x_train[0]
+    print y_train
