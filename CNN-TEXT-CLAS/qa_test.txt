@@ -1,0 +1,500 @@
+dist How far is it from Denver to Aspen ?-0-4
+city What county is Modesto , California in ?-0-5
+desc Who was Galileo ?-0-3
+def What is an atom ?-0-0
+date When did Hawaii become a state ?-0-4
+dist How tall is the Sears Building ?-0-4
+gr George Bush purchased a small interest in which baseball team ?-0-3
+plant What is Australia 's national flower ?-0-1
+reason Why does the moon turn orange ?-0-0
+def What is autism ?-0-0
+city What city had a world fair in 1900 ?-0-5
+ind What person 's head is on a dime ?-0-3
+weight What is the average weight of a Yellow Labrador ?-0-4
+ind Who was the first man to fly across the Pacific Ocean ?-0-3
+date When did Idaho become a state ?-0-4
+other What is the life expectancy for crickets ?-0-4
+substance What metal has the highest melting point ?-0-1
+ind Who developed the vaccination against polio ?-0-3
+def What is epilepsy ?-0-0
+date What year did the Titanic sink ?-0-4
+ind Who was the first American to walk in space ?-0-3
+def What is a biosphere ?-0-0
+other What river in the US is known as the Big Muddy ?-0-5
+def What is bipolar disorder ?-0-0
+def What is cholesterol ?-0-0
+ind Who developed the Macintosh computer ?-0-3
+def What is caffeine ?-0-0
+other What imaginary line is halfway between the North and South Poles ?-0-5
+other Where is John Wayne airport ?-0-5
+other What hemisphere is the Philippines in ?-0-5
+speed What is the average speed of the horses at the Kentucky Derby ?-0-4
+mount Where are the Rocky Mountains ?-0-5
+def What are invertebrates ?-0-0
+temp What is the temperature at the center of the earth ?-0-4
+date When did John F. Kennedy get elected as President ?-0-4
+period How old was Elvis Presley when he died ?-0-4
+other Where is the Orinoco River ?-0-5
+dist How far is the service line from the net in tennis ?-0-4
+count How much fiber should you have per day ?-0-4
+count How many Great Lakes are there ?-0-4
+plant Material called linen is made from what plant ?-0-1
+def What is Teflon ?-0-0
+def What is amitriptyline ?-0-0
+def What is a shaman ?-0-0
+animal What is the proper name for a female walrus ?-0-1
+animal What is a group of turkeys called ?-0-1
+period How long did Rip Van Winkle sleep ?-0-4
+def What are triglycerides ?-0-0
+count How many liters in a gallon ?-0-4
+gr What is the name of the chocolate company in San Francisco ?-0-3
+def What are amphibians ?-0-0
+ind Who discovered x-rays ?-0-3
+ind Which comedian 's signature line is `` Can we talk '' ?-0-3
+def What is fibromyalgia ?-0-0
+desc What is done with worn or outdated flags ?-0-0
+def What does cc in engines mean ?-0-0
+date When did Elvis Presley die ?-0-4
+city What is the capital of Yugoslavia ?-0-5
+city Where is Milan ?-0-5
+speed What is the speed hummingbirds fly ?-0-4
+city What is the oldest city in the United States ?-0-5
+ind What was W.C. Fields ' real name ?-0-3
+other What river flows between Fargo , North Dakota and Moorhead , Minnesota ?-0-5
+food What do bats eat ?-0-1
+state What state did the Battle of Bighorn take place in ?-0-5
+desc Who was Abraham Lincoln ?-0-3
+termeq What do you call a newborn kangaroo ?-0-1
+def What are spider veins ?-0-0
+date What day and month did John Lennon die ?-0-4
+other What strait separates North America from Asia ?-0-5
+other What is the population of Seattle ?-0-4
+money How much was a ticket for the Titanic ?-0-4
+city What is the largest city in the world ?-0-5
+ind What American composer wrote the music for `` West Side Story '' ?-0-3
+other Where is the Mall of the America ?-0-5
+def What is the pH scale ?-0-0
+currency What type of currency is used in Australia ?-0-1
+dist How tall is the Gateway Arch in St. Louis , MO ?-0-4
+weight How much does the human adult female brain weigh ?-0-4
+ind Who was the first governor of Alaska ?-0-3
+def What is a prism ?-0-0
+date When was the first liver transplant ?-0-4
+ind Who was elected president of South Africa in 1994 ?-0-3
+other What is the population of China ?-0-4
+date When was Rosa Parks born ?-0-4
+reason Why is a ladybug helpful ?-0-0
+def What is amoxicillin ?-0-0
+ind Who was the first female United States Representative ?-0-3
+def What are xerophytes ?-0-0
+country What country did Ponce de Leon come from ?-0-5
+event The U.S. Department of Treasury first issued paper currency for the U.S. during which war ?-0-1
+def What is desktop publishing ?-0-0
+temp What is the temperature of the sun 's surface ?-0-4
+date What year did Canada join the United Nations ?-0-4
+gr What is the oldest university in the US ?-0-3
+other Where is Prince Edward Island ?-0-5
+date Mercury , what year was it discovered ?-0-4
+def What is cryogenics ?-0-0
+def What are coral reefs ?-0-0
+other What is the longest major league baseball-winning streak ?-0-1
+def What is neurology ?-0-0
+ind Who invented the calculator ?-0-3
+manner How do you measure earthquakes ?-0-0
+desc Who is Duke Ellington ?-0-3
+city What county is Phoenix , AZ in ?-0-5
+def What is a micron ?-0-0
+temp The sun 's core , what is the temperature ?-0-4
+animal What is the Ohio state bird ?-0-1
+date When were William Shakespeare 's twins born ?-0-4
+other What is the highest dam in the U.S. ?-0-5
+color What color is a poison arrow frog ?-0-1
+def What is acupuncture ?-0-0
+dist What is the length of the coastline of the state of Alaska ?-0-4
+ind What is the name of Neil Armstrong 's wife ?-0-3
+plant What is Hawaii 's state flower ?-0-1
+ind Who won Ms. American in 1989 ?-0-3
+date When did the Hindenberg crash ?-0-4
+substance What mineral helps prevent osteoporosis ?-0-1
+date What was the last year that the Chicago Cubs won the World Series ?-0-4
+other Where is Perth ?-0-5
+date What year did WWII begin ?-0-4
+dist What is the diameter of a golf ball ?-0-4
+def What is an eclipse ?-0-0
+ind Who discovered America ?-0-3
+dist What is the earth 's diameter ?-0-4
+ind Which president was unmarried ?-0-3
+dist How wide is the Milky Way galaxy ?-0-4
+date During which season do most thunderstorms occur ?-0-4
+def What is Wimbledon ?-0-0
+period What is the gestation period for a cat ?-0-4
+dist How far is a nautical mile ?-0-4
+ind Who was the abolitionist who led the raid on Harper 's Ferry in 1859 ?-0-3
+def What does target heart rate mean ?-0-0
+product What was the first satellite to go into space ?-0-1
+def What is foreclosure ?-0-0
+other What is the major fault line near Kentucky ?-0-1
+other Where is the Holland Tunnel ?-0-5
+ind Who wrote the hymn `` Amazing Grace '' ?-0-3
+title What position did Willie Davis play in baseball ?-0-3
+def What are platelets ?-0-0
+def What is severance pay ?-0-0
+animal What is the name of Roy Roger 's dog ?-0-1
+other Where are the National Archives ?-0-5
+animal What is a baby turkey called ?-0-1
+def What is poliomyelitis ?-0-0
+body What is the longest bone in the human body ?-0-1
+ind Who is a German philosopher ?-0-3
+veh What were Christopher Columbus ' three ships ?-0-1
+def What does Phi Beta Kappa mean ?-0-0
+def What is nicotine ?-0-0
+termeq What is another name for vitamin B1 ?-0-1
+ind Who discovered radium ?-0-3
+def What are sunspots ?-0-0
+date When was Algeria colonized ?-0-4
+gr What baseball team was the first to make numbers part of their uniform ?-0-3
+other What continent is Egypt on ?-0-5
+city What is the capital of Mongolia ?-0-5
+def What is nanotechnology ?-0-0
+other In the late 1700 's British convicts were used to populate which colony ?-0-5
+state What state is the geographic center of the lower 48 states ?-0-5
+def What is an obtuse angle ?-0-0
+def What are polymers ?-0-0
+date When is hurricane season in the Caribbean ?-0-4
+other Where is the volcano Mauna Loa ?-0-5
+termeq What is another astronomic term for the Northern Lights ?-0-1
+other What peninsula is Spain part of ?-0-5
+date When was Lyndon B. Johnson born ?-0-4
+def What is acetaminophen ?-0-0
+state What state has the least amount of rain per year ?-0-5
+ind Who founded American Red Cross ?-0-3
+date What year did the Milwaukee Braves become the Atlanta Braves ?-0-4
+speed How fast is alcohol absorbed ?-0-4
+date When is the summer solstice ?-0-4
+def What is supernova ?-0-0
+other Where is the Shawnee National Forest ?-0-5
+state What U.S. state 's motto is `` Live free or Die '' ?-0-5
+other Where is the Lourve ?-0-5
+date When was the first stamp issued ?-0-4
+color What primary colors do you mix to make orange ?-0-1
+dist How far is Pluto from the sun ?-0-4
+other What body of water are the Canary Islands in ?-0-5
+def What is neuropathy ?-0-0
+other Where is the Euphrates River ?-0-5
+def What is cryptography ?-0-0
+substance What is natural gas composed of ?-0-1
+ind Who is the Prime Minister of Canada ?-0-3
+ind What French ruler was defeated at the battle of Waterloo ?-0-3
+def What is leukemia ?-0-0
+other Where did Howard Hughes die ?-0-5
+substance What is the birthstone for June ?-0-1
+other What is the sales tax in Minnesota ?-0-1
+dist What is the distance in miles from the earth to the sun ?-0-4
+period What is the average life span for a chicken ?-0-4
+date When was the first Wal-Mart store opened ?-0-4
+def What is relative humidity ?-0-0
+city What city has the zip code of 35824 ?-0-5
+currency What currency is used in Algeria ?-0-1
+ind Who invented the hula hoop ?-0-3
+product What was the most popular toy in 1957 ?-0-1
+substance What is pastrami made of ?-0-1
+product What is the name of the satellite that the Soviet Union sent into space in 1957 ?-0-1
+city What city 's newspaper is called `` The Enquirer '' ?-0-5
+ind Who invented the slinky ?-0-3
+animal What are the animals that don 't have backbones called ?-0-1
+other What is the melting point of copper ?-0-4
+other Where is the volcano Olympus Mons located ?-0-5
+ind Who was the 23rd president of the United States ?-0-3
+temp What is the average body temperature ?-0-4
+desc What does a defibrillator do ?-0-0
+desc What is the effect of acid rain ?-0-0
+date What year did the United States abolish the draft ?-0-4
+speed How fast is the speed of light ?-0-4
+state What province is Montreal in ?-0-5
+other What New York City structure is also known as the Twin Towers ?-0-5
+def What is fungus ?-0-0
+lang What is the most frequently spoken language in the Netherlands ?-0-1
+def What is sodium chloride ?-0-0
+termeq What are the spots on dominoes called ?-0-1
+count How many pounds in a ton ?-0-4
+def What is influenza ?-0-0
+def What is ozone depletion ?-0-0
+date What year was the Mona Lisa painted ?-0-4
+def What does `` Sitting Shiva '' mean ?-0-0
+other What is the electrical output in Madrid , Spain ?-0-1
+mount Which mountain range in North America stretches from Maine to Georgia ?-0-5
+substance What is plastic made of ?-0-1
+other What is the population of Nigeria ?-0-4
+desc What does your spleen do ?-0-0
+other Where is the Grand Canyon ?-0-5
+ind Who invented the telephone ?-0-3
+date What year did the U.S. buy Alaska ?-0-4
+ind What is the name of the leader of Ireland ?-0-3
+def What is phenylalanine ?-0-0
+count How many gallons of water are there in a cubic foot ?-0-4
+other What are the two houses of the Legislative branch ?-0-1
+def What is sonar ?-0-0
+other In Poland , where do most people live ?-0-5
+def What is phosphorus ?-0-0
+other What is the location of the Sea of Tranquility ?-0-5
+speed How fast is sound ?-0-4
+state What French province is cognac produced in ?-0-5
+def What is Valentine 's Day ?-0-0
+reason What causes gray hair ?-0-0
+def What is hypertension ?-0-0
+def What is bandwidth ?-0-0
+other What is the longest suspension bridge in the U.S. ?-0-5
+def What is a parasite ?-0-0
+def What is home equity ?-0-0
+desc What do meteorologists do ?-0-0
+other What is the criterion for being legally blind ?-0-1
+ind Who is the tallest man in the world ?-0-3
+city What are the twin cities ?-0-5
+other What did Edward Binney and Howard Smith invent in 1903 ?-0-1
+substance What is the statue of liberty made of ?-0-1
+def What is pilates ?-0-0
+other What planet is known as the `` red '' planet ?-0-5
+dist What is the depth of the Nile river ?-0-4
+termeq What is the colorful Korean traditional dress called ?-0-1
+def What is Mardi Gras ?-0-0
+money Mexican pesos are worth what in U.S. dollars ?-0-4
+ind Who was the first African American to play for the Brooklyn Dodgers ?-0-3
+ind Who was the first Prime Minister of Canada ?-0-3
+count How many Admirals are there in the U.S. Navy ?-0-4
+instru What instrument did Glenn Miller play ?-0-1
+period How old was Joan of Arc when she died ?-0-4
+def What does the word fortnight mean ?-0-0
+def What is dianetics ?-0-0
+city What is the capital of Ethiopia ?-0-5
+period For how long is an elephant pregnant ?-0-4
+manner How did Janice Joplin die ?-0-0
+lang What is the primary language in Iceland ?-0-1
+desc What is the difference between AM radio stations and FM radio stations ?-0-0
+def What is osteoporosis ?-0-0
+ind Who was the first woman governor in the U.S. ?-0-3
+def What is peyote ?-0-0
+reason What is the esophagus used for ?-0-0
+def What is viscosity ?-0-0
+date What year did Oklahoma become a state ?-0-4
+abb What is the abbreviation for Texas ?-0-2
+substance What is a mirror made out of ?-0-1
+other Where on the body is a mortarboard worn ?-0-5
+ind What was J.F.K. 's wife 's name ?-0-3
+exp What does I.V. stand for ?-0-2
+def What is the chunnel ?-0-0
+other Where is Hitler buried ?-0-5
+def What are antacids ?-0-0
+def What is pulmonary fibrosis ?-0-0
+def What are Quaaludes ?-0-0
+def What is naproxen ?-0-0
+def What is strep throat ?-0-0
+city What is the largest city in the U.S. ?-0-5
+dismed What is foot and mouth disease ?-0-1
+other What is the life expectancy of a dollar bill ?-0-4
+termeq What do you call a professional map drawer ?-0-1
+def What are Aborigines ?-0-0
+def What is hybridization ?-0-0
+color What color is indigo ?-0-1
+period How old do you have to be in order to rent a car in Italy ?-0-4
+other What does a barometer measure ?-0-1
+color What color is a giraffe 's tongue ?-0-1
+exp What does USPS stand for ?-0-2
+date What year did the NFL go on strike ?-0-4
+def What is solar wind ?-0-0
+date What date did Neil Armstrong land on the moon ?-0-4
+date When was Hiroshima bombed ?-0-4
+other Where is the Savannah River ?-0-5
+ind Who was the first woman killed in the Vietnam War ?-0-3
+other What planet has the strongest magnetic field of all the planets ?-0-5
+ind Who is the governor of Alaska ?-0-3
+date What year did Mussolini seize power in Italy ?-0-4
+city What is the capital of Persia ?-0-5
+other Where is the Eiffel Tower ?-0-5
+count How many hearts does an octopus have ?-0-4
+def What is pneumonia ?-0-0
+other What is the deepest lake in the US ?-0-5
+def What is a fuel cell ?-0-0
+ind Who was the first U.S. president to appear on TV ?-0-3
+other Where is the Little League Museum ?-0-5
+other What are the two types of twins ?-0-1
+other What is the brightest star ?-0-5
+def What is diabetes ?-0-0
+date When was President Kennedy shot ?-0-4
+exp What is TMJ ?-0-2
+color What color is yak milk ?-0-1
+date What date was Dwight D. Eisenhower born ?-0-4
+exp What does the technical term ISDN mean ?-0-2
+reason Why is the sun yellow ?-0-0
+money What is the conversion rate between dollars and pounds ?-0-4
+date When was Abraham Lincoln born ?-0-4
+def What is the Milky Way ?-0-0
+def What is mold ?-0-0
+date What year was Mozart born ?-0-4
+animal What is a group of frogs called ?-0-1
+veh What is the name of William Penn 's ship ?-0-1
+other What is the melting point of gold ?-0-4
+other What is the street address of the White House ?-0-5
+def What is semolina ?-0-0
+food What fruit is Melba sauce made from ?-0-1
+def What is Ursa Major ?-0-0
+perc What is the percentage of water content in the human body ?-0-4
+weight How much does water weigh ?-0-4
+event What was President Lyndon Johnson 's reform program called ?-0-1
+perc What is the murder rate in Windsor , Ontario ?-0-4
+ind Who is the only president to serve 2 non-consecutive terms ?-0-3
+other What is the population of Australia ?-0-4
+ind Who painted the ceiling of the Sistine Chapel ?-0-3
+dismed Name a stimulant .-0-1
+desc What is the effect of volcanoes on the climate ?-0-0
+date What year did the Andy Griffith show begin ?-0-4
+def What is acid rain ?-0-0
+date What is the date of Mexico 's independence ?-0-4
+other What is the location of Lake Champlain ?-0-5
+plant What is the Illinois state flower ?-0-1
+animal What is Maryland 's state bird ?-0-1
+def What is quicksilver ?-0-0
+ind Who wrote `` The Divine Comedy '' ?-0-3
+speed What is the speed of light ?-0-4
+dist What is the width of a football field ?-0-4
+reason Why in tennis are zero points called love ?-0-0
+animal What kind of dog was Toto in the Wizard of Oz ?-0-1
+def What is a thyroid ?-0-0
+def What does ciao mean ?-0-0
+body What is the only artery that carries blue blood from the heart to the lungs ?-0-1
+other How often does Old Faithful erupt at Yellowstone National Park ?-0-4
+def What is acetic acid ?-0-0
+dist What is the elevation of St. Louis , MO ?-0-4
+color What color does litmus paper turn when it comes into contact with a strong acid ?-0-1
+color What are the colors of the German flag ?-0-1
+def What is the Moulin Rouge ?-0-0
+other What soviet seaport is on the Black Sea ?-0-5
+weight What is the atomic weight of silver ?-0-4
+currency What currency do they use in Brazil ?-0-1
+def What are pathogens ?-0-0
+def What is mad cow disease ?-0-0
+food Name a food high in zinc .-0-1
+date When did North Carolina enter the union ?-0-4
+other Where do apple snails live ?-0-5
+def What are ethics ?-0-0
+exp What does CPR stand for ?-0-2
+def What is an annuity ?-0-0
+ind Who killed John F. Kennedy ?-0-3
+ind Who was the first vice president of the U.S. ?-0-3
+substance What birthstone is turquoise ?-0-1
+ind Who was the first US President to ride in an automobile to his inauguration ?-0-3
+period How old was the youngest president of the United States ?-0-4
+date When was Ulysses S. Grant born ?-0-4
+def What is Muscular Dystrophy ?-0-0
+ind Who lived in the Neuschwanstein castle ?-0-3
+def What is propylene glycol ?-0-0
+def What is a panic disorder ?-0-0
+ind Who invented the instant Polaroid camera ?-0-3
+def What is a carcinogen ?-0-0
+animal What is a baby lion called ?-0-1
+other What is the world 's population ?-0-4
+def What is nepotism ?-0-0
+def What is die-casting ?-0-0
+def What is myopia ?-0-0
+other What is the sales tax rate in New York ?-0-4
+perc Developing nations comprise what percentage of the world 's population ?-0-4
+mount What is the fourth highest mountain in the world ?-0-5
+ind What is Shakespeare 's nickname ?-0-3
+substance What is the heaviest naturally occurring element ?-0-1
+date When is Father 's Day ?-0-4
+exp What does the acronym NASA stand for ?-0-2
+dist How long is the Columbia River in miles ?-0-4
+city What city 's newspaper is called `` The Star '' ?-0-5
+def What is carbon dioxide ?-0-0
+other Where is the Mason/Dixon line ?-0-5
+date When was the Boston tea party ?-0-4
+def What is metabolism ?-0-0
+ind Which U.S.A. president appeared on `` Laugh-In '' ?-0-3
+substance What are cigarettes made of ?-0-1
+city What is the capital of Zimbabwe ?-0-5
+exp What does NASA stand for ?-0-2
+plant What is the state flower of Michigan ?-0-1
+def What are semiconductors ?-0-0
+def What is nuclear power ?-0-0
+def What is a tsunami ?-0-0
+ind Who is the congressman from state of Texas on the armed forces committee ?-0-3
+ind Who was president in 1913 ?-0-3
+date When was the first kidney transplant ?-0-4
+other What are Canada 's two territories ?-0-5
+veh What was the name of the plane Lindbergh flew solo across the Atlantic ?-0-1
+def What is genocide ?-0-0
+other What continent is Argentina on ?-0-5
+other What monastery was raided by Vikings in the late eighth century ?-0-1
+def What is an earthquake ?-0-0
+other Where is the tallest roller coaster located ?-0-5
+def What are enzymes ?-0-0
+ind Who discovered oxygen ?-0-3
+def What is bangers and mash ?-0-0
+animal What is the name given to the Tiger at Louisiana State University ?-0-1
+other Where are the British crown jewels kept ?-0-5
+ind Who was the first person to reach the North Pole ?-0-3
+def What is an ulcer ?-0-0
+def What is vertigo ?-0-0
+def What is the spirometer test ?-0-0
+date When is the official first day of summer ?-0-4
+exp What does the abbreviation SOS mean ?-0-2
+animal What is the smallest bird in Britain ?-0-1
+ind Who invented Trivial Pursuit ?-0-3
+substance What gasses are in the troposphere ?-0-1
+country Which country has the most water pollution ?-0-5
+animal What is the scientific name for elephant ?-0-1
+ind Who is the actress known for her role in the movie `` Gypsy '' ?-0-3
+animal What breed of hunting dog did the Beverly Hillbillies own ?-0-1
+other What is the rainiest place on Earth ?-0-5
+ind Who was the first African American to win the Nobel Prize in literature ?-0-3
+date When is St. Patrick 's Day ?-0-4
+animal What was FDR 's dog 's name ?-0-1
+color What colors need to be mixed to get the color pink ?-0-1
+sport What is the most popular sport in Japan ?-0-1
+food What is the active ingredient in baking soda ?-0-1
+date When was Thomas Jefferson born ?-0-4
+temp How cold should a refrigerator be ?-0-4
+date When was the telephone invented ?-0-4
+color What is the most common eye color ?-0-1
+other Where was the first golf course in the United States ?-0-5
+def What is schizophrenia ?-0-0
+def What is angiotensin ?-0-0
+gr What did Jesse Jackson organize ?-0-3
+animal What is New York 's state bird ?-0-1
+other What is the National Park in Utah ?-0-5
+date What is Susan B. Anthony 's birthday ?-0-4
+state In which state would you find the Catskill Mountains ?-0-5
+termeq What do you call a word that is spelled the same backwards and forwards ?-0-1
+def What are pediatricians ?-0-0
+gr What chain store is headquartered in Bentonville , Arkansas ?-0-3
+def What are solar cells ?-0-0
+def What is compounded interest ?-0-0
+def What are capers ?-0-0
+def What is an antigen ?-0-0
+currency What currency does Luxembourg use ?-0-1
+other What is the population of Venezuela ?-0-4
+other What type of polymer is used for bulletproof vests ?-0-1
+currency What currency does Argentina use ?-0-1
+def What is a thermometer ?-0-0
+city What Canadian city has the largest population ?-0-5
+color What color are crickets ?-0-1
+country Which country gave New York the Statue of Liberty ?-0-5
+product What was the name of the first U.S. satellite sent into space ?-0-1
+substance What precious stone is a form of pure carbon ?-0-1
+substance What kind of gas is in a fluorescent bulb ?-0-1
+def What is rheumatoid arthritis ?-0-0
+other What river runs through Rowe , Italy ?-0-5
+def What is cerebral palsy ?-0-0
+city What city is also known as `` The Gateway to the West '' ?-0-5
+dist How far away is the moon ?-0-4
+other What is the source of natural gas ?-0-1
+veh In what spacecraft did U.S. astronaut Alan Shepard make his historic 1961 flight ?-0-1
+def What is pectin ?-0-0
+def What is bio-diversity ?-0-0
+techmeth What 's the easiest way to remove wallpaper ?-0-1
+date What year did the Titanic start on its journey ?-0-4
+count How much of an apple is water ?-0-4
+ind Who was the 22nd President of the US ?-0-3
+currency What is the money they use in Zambia ?-0-1
+count How many feet in a mile ?-0-4
+substance What is the birthstone of October ?-0-1
+def What is e-coli ?-0-0
