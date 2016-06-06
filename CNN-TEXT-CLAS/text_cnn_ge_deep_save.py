@@ -41,7 +41,7 @@ class TextCNN(object):
                 W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
                 b = tf.Variable(tf.constant(0.1, shape=[num_filters1]), name="b")
                 conv = tf.nn.conv2d(
-                    self.input_x,
+                    self.embedded_chars_expanded,
                     W,
                     strides=[1, 1, 1, 1],
                     padding="VALID",
