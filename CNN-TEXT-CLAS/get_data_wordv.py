@@ -231,6 +231,7 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 
     model = get_word2vec()
+    # model = None
     train_words = []
     train_tags = []
     test_len = 0
@@ -239,9 +240,11 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
         with open(test_file, 'r') as f1:
 
             for line in f1:
-                line = line.decode('utf-8')
+                line = line.replace("\n", "")
+                # line = line.decode('utf-8')
                 tks = line.split('-0-')
                 word = tks[0]
+
                 words = nltk.word_tokenize(word)
 
                 x = []
@@ -269,11 +272,12 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
     with open(train_file, 'r') as f1:
 
         for line in f1:
-            line = line.decode('utf-8')
+            line = line.replace("\n", "")
+            # line = line.decode('utf-8')
             tks = line.split('-0-')
             word = tks[0]
             words = nltk.word_tokenize(word)
-
+            # print words
             x = []
             for word in words:
                 if word == "GENE1GENE1":
@@ -301,7 +305,9 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
     train_tags = np.concatenate([train_tags], 0)
     print "end padding"
 
+    classes = 6
     if test_file is None:
+        classes = 2
         random.shuffle(index)
         test_len = int(split * len(train_words))
 
@@ -311,9 +317,9 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 
     test_words = np.zeros([test_len + 1, len(train_words[0]), 300, 1], dtype=np.float32)
-    test_tags = np.zeros([test_len + 1, 3], dtype=np.float32)
+    test_tags = np.zeros([test_len + 1, classes], dtype=np.float32)
     X = np.zeros([train_len, len(train_words[0]), 300, 1], dtype=np.float32)
-    Y = np.zeros([train_len, 3], dtype=np.float32)
+    Y = np.zeros([train_len, classes], dtype=np.float32)
     for i, j in enumerate(train_words):
         if i < test_len:
             test_words[i] = train_words[index[i]]
@@ -334,45 +340,46 @@ def get_word2vec():
 
 
 if __name__ == "__main__":
-    # X, Y, test_words, test_tags = input_data_gen_w2v()
+    X, Y, test_words, test_tags = get_input_data()
+    print X
     # X = np.array(X, dtype=np.float32)
     # print X[0]
-    train_file = "total-data.txt"
-    n = 0
-    n1 = 0
-    n2 = 0
-    err = 0
-    # result = "total-data.txt"
-    # r = open(result, "w+")
-    with open(train_file, 'r') as f1:
-        for line in f1:
-            print "line", n
-            line = line.decode('utf-8')
-            n += 1
-            tks = line.split('-0-')
-            word = tks[0]
-            word2 = tks[3]
-            word1 = tks[2]
-            # print word1, word2
-            # word = word.lower().replace(word1, "gene1")
-            #
-            # word = word.lower().replace(word2, "gene2")
-            words = nltk.word_tokenize(word)
-            # # print words
-            has1 = False
-            has2 = False
-            for word in words:
-                if word == "GENE1GENE1" and not has1:
-                    # print "n1", n1
-                    n1 += 1
-                    has1 = True
-                elif word == "GENE2GENE2" and not has2:
-                    # print "n2", n2
-                    n2 += 1
-                    has2 = True
-            if not has1 or not has2:
-                err += 1
-                print err
-
-                print words
-                print word1, word2
+    # train_file = "total-data.txt"
+    # n = 0
+    # n1 = 0
+    # n2 = 0
+    # err = 0
+    # # result = "total-data.txt"
+    # # r = open(result, "w+")
+    # with open(train_file, 'r') as f1:
+    #     for line in f1:
+    #         print "line", n
+    #         line = line.decode('utf-8')
+    #         n += 1
+    #         tks = line.split('-0-')
+    #         word = tks[0]
+    #         word2 = tks[3]
+    #         word1 = tks[2]
+    #         # print word1, word2
+    #         # word = word.lower().replace(word1, "gene1")
+    #         #
+    #         # word = word.lower().replace(word2, "gene2")
+    #         words = nltk.word_tokenize(word)
+    #         # # print words
+    #         has1 = False
+    #         has2 = False
+    #         for word in words:
+    #             if word == "GENE1GENE1" and not has1:
+    #                 # print "n1", n1
+    #                 n1 += 1
+    #                 has1 = True
+    #             elif word == "GENE2GENE2" and not has2:
+    #                 # print "n2", n2
+    #                 n2 += 1
+    #                 has2 = True
+    #         if not has1 or not has2:
+    #             err += 1
+    #             print err
+    #
+    #             print words
+    #             print word1, word2

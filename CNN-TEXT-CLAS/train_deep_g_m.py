@@ -8,17 +8,17 @@ import time
 import datetime
 import data_helpers
 #from get_data_wordv import *
-from text_cnn_ge import TextCNN
+from text_cnn_2d_single_save import TextCNN
 from pkl_test import load_data
 
 # Parameters
 # ==================================================
 
 # Model Hyperparameters
-file_name = "result_fc_53.txt"
+
 tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "5,4,3", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 20, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_integer("num_filters", 32, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
@@ -62,7 +62,12 @@ print("Loading data...")
 #     x_train, y_train, x_dev, y_dev = load_data()
 # except:
 from get_data_wordv import *
-x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+
+file_name = "result_rm_single_w2v.txt"
+
+# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+x_train, y_train, x_dev, y_dev = get_input_data()
+num_classes = 2
 print "end load"
 # print "trans"
 # x_train = np.array(x_train)
@@ -87,7 +92,7 @@ with tf.Graph().as_default():
     with sess.as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
-            num_classes=3,
+            num_classes=num_classes,
             height=maxlen1,
             batch_size=FLAGS.batch_size,
             embedding_size=300,
