@@ -5,7 +5,7 @@ from keras.preprocessing import sequence
 from keras.preprocessing.text import one_hot
 
 __author__ = 'bohaohan'
-import jieba
+# import jieba
 import numpy as np
 import sys
 import nltk
@@ -52,7 +52,7 @@ def input_data():
         for line in f1:
             tks = line.split('\t', 1)
             word = tks[0]
-            word = jieba.cut(word, cut_all=True)
+            # word = jieba.cut(word, cut_all=True)
             words = ""
             for i in word:
                 words += i + " "
@@ -103,8 +103,8 @@ def input_data_w2v(train_file="3.25-data.txt", split=0.1):
         for line in f1:
             tks = line.split('\t', 1)
             word = tks[0]
-            words = jieba.cut(word, cut_all=True)
-
+            # words = jieba.cut(word, cut_all=True)
+            words = []
             x = []
             # words = ""
             for word in words:
