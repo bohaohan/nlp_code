@@ -63,7 +63,7 @@ print("Loading data...")
 # except:
 from get_data_wordv import *
 
-file_name = "result_rm_single_w2v.txt"
+file_name = "result_rm_deep_w2v.txt"
 
 # x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
 x_train, y_train, x_dev, y_dev = get_input_data()
