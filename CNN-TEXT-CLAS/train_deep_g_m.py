@@ -63,11 +63,11 @@ print("Loading data...")
 # except:
 from get_data_wordv import *
 
-file_name = "result_qa_single_w2v.txt"
+file_name = "result_rm_single_w2v.txt"
 
 # x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
-# x_train, y_train, x_dev, y_dev = get_input_data()
-x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
+x_train, y_train, x_dev, y_dev = get_input_data()
+# x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
 num_classes = len(y_dev[0])
 print "end load"
 # print "trans"
