@@ -8,7 +8,7 @@ import time
 import datetime
 import data_helpers
 #from get_data_wordv import *
-from text_cnn_2d_single_save import TextCNN
+from text_cnn_ge_save1 import TextCNN
 from pkl_test import load_data
 
 # Parameters
