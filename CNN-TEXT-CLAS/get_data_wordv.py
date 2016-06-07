@@ -220,10 +220,10 @@ def get_label_rm(label):
 
 
 def get_label_qa(label):
-    qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
+    # qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
     tag = [0 for i in range(6)]
-    index = qa_labels.index(label)
-    tag[index] = 1
+    # index = qa_labels.index(label)
+    tag[int(label)] = 1
     return tag
 
 
@@ -260,13 +260,13 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
                 if len(x) > 500:
                     continue
-                try:
-                    tag = label_func(tks[1])
+                # try:
+                tag = label_func(tks[1])
 
-                    train_words.append(x)
-                    train_tags.append(tag)
-                except:
-                    pass
+                train_words.append(x)
+                train_tags.append(tag)
+                # except:
+                #     pass
         test_len = len(train_words)
 
     with open(train_file, 'r') as f1:
@@ -291,13 +291,13 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
             if len(x) > 500:
                 continue
-            try:
-                tag = label_func(tks[1])
+            # try:
+            tag = label_func(tks[1])
 
-                train_words.append(x)
-                train_tags.append(tag)
-            except:
-                pass
+            train_words.append(x)
+            train_tags.append(tag)
+            # except:
+            #     pass
     # print train_words[0]
     index = [i for i in range(len(train_words))]
     print "padding"
@@ -340,7 +340,7 @@ def get_word2vec():
 
 
 if __name__ == "__main__":
-    X, Y, test_words, test_tags = get_input_data()
+    X, Y, test_words, test_tags = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
     print X
     # X = np.array(X, dtype=np.float32)
     # print X[0]
