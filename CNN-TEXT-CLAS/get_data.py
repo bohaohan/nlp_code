@@ -213,5 +213,6 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
 
 if __name__ == "__main__":
-    x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
-    print len(y_dev)
+    # x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
+    x_train, y_train, x_dev, y_dev = get_input_data()
+    print y_dev
