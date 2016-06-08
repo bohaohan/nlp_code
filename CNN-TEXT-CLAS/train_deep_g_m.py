@@ -17,8 +17,8 @@ from pkl_test import load_data
 # Model Hyperparameters
 
 tf.flags.DEFINE_integer("embedding_dim", 300, "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_string("filter_sizes", "5,4,3", "Comma-separated filter sizes (default: '3,4,5')")
-tf.flags.DEFINE_integer("num_filters", 32, "Number of filters per filter size (default: 128)")
+tf.flags.DEFINE_string("filter_sizes", "2,1,3", "Comma-separated filter sizes (default: '3,4,5')")
+tf.flags.DEFINE_integer("num_filters", 64, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularizaion lambda (default: 0.0)")
 
