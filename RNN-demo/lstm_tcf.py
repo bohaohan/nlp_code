@@ -1,4 +1,4 @@
-from get_data import input_data_gen_w2v, input_data_w2v, input_data
+from nlp_code.get_data import input_data_gen_w2v, input_data_w2v, input_data
 
 __author__ = 'bohaohan'
 from keras.models import Sequential

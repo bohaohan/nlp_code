@@ -24,7 +24,7 @@ from keras.layers.core import Dense, Dropout, Activation
 from keras.layers.embeddings import Embedding
 from keras.layers.recurrent import LSTM
 from keras.datasets import imdb
-from get_data import input_data
+from nlp_code.get_data import input_data
 max_features = 20000
 maxlen = 100  # cut texts after this number of words (among top max_features most common words)
 batch_size = 32
@@ -53,10 +53,6 @@ model.add(Dropout(0.5))
 model.add(Dense(1))
 model.add(Activation('sigmoid'))
 
-# try using different optimizers and different optimizer configs
-# model.compile(loss='binary_crossentropy',
-#               optimizer='adam',
-#               class_mode="binary")
 model.compile(loss='binary_crossentropy', optimizer='rmsprop')
 
 print("Train...")
@@ -72,5 +68,3 @@ print(model.predict_classes(X_test))
 print('Test score:', score)
 print('Test accuracy:', acc)
 model.save_weights('lstm_w1.h5')
-# cPickle.dump(model, open("lstm1.pkl", "wb"))
-# print(model.predict(X_train[0]))

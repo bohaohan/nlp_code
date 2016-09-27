@@ -1,4 +1,4 @@
-from get_data import input_data_gen_w2v
+from nlp_code.get_data import input_data_gen_w2v
 
 __author__ = 'bohaohan'
 from keras.models import Sequential
@@ -10,7 +10,6 @@ import numpy as np
 # print "end load"
 
 data_dim = 300
-# timesteps = len(x_train[0])
 timesteps = 100
 nb_classes = 3
 batch_size = 16

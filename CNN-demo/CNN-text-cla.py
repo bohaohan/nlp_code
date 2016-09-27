@@ -1,6 +1,11 @@
-__author__ = 'bohaohan'
+'''This example demonstrates the use of Convolution1D for text classification.
+Run on GPU: THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python imdb_cnn.py
+Get to 0.835 test accuracy after 2 epochs. 100s/epoch on K520 GPU.
+'''
+
+from __future__ import print_function
 import numpy as np
-from get_data import input_data
+from nlp_code.get_data import input_data_gen
 
 np.random.seed(1337)  # for reproducibility
 
@@ -9,6 +14,10 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.embeddings import Embedding
 from keras.layers.convolutional import Convolution1D, MaxPooling1D
+from keras.datasets import imdb
+
+
+# set parameters:
 max_features = 10000
 maxlen = 100
 batch_size = 32
@@ -16,12 +25,22 @@ embedding_dims = 100
 nb_filter = 250
 filter_length = 3
 hidden_dims = 250
-nb_epoch = 10
-X_train, y_train, X_test, y_test = input_data()
+nb_epoch = 50
+
+print('Loading data...')
+# (X_train, y_train), (X_test, y_test) = imdb.load_data(nb_words=max_features,
+#                                                       test_split=0.2)
+X_train, y_train, X_test, y_test = input_data_gen()
+print(len(X_train), 'train sequences')
+print(len(X_test), 'test sequences')
+
+print('Pad sequences (samples x time)')
 X_train = sequence.pad_sequences(X_train, maxlen=maxlen)
 X_test = sequence.pad_sequences(X_test, maxlen=maxlen)
+print('X_train shape:', X_train.shape)
+print('X_test shape:', X_test.shape)
 
-
+print('Build model...')
 model = Sequential()
 
 # we start off with an efficient embedding layer which maps
@@ -49,21 +68,20 @@ model.add(Dropout(0.25))
 model.add(Activation('relu'))
 
 # We project onto a single unit output layer, and squash it with a sigmoid:
-model.add(Dense(1))
+model.add(Dense(3))
 model.add(Activation('sigmoid'))
 
-model.compile(loss='binary_crossentropy',
+model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
-              class_mode='binary')
-model.load_weights('rnn_w.h5')
-c = model.predict_classes(X_test)
-total = 0
-true = 0
-for i, j in enumerate(c):
-    if y_test[i] == c[i][0]:
-        true += 1
-    total += 1
+              class_mode='categorical')
+model.fit(X_train, y_train, batch_size=batch_size,
+          nb_epoch=nb_epoch, show_accuracy=True,
+          validation_data=(X_test, y_test))
+score, acc = model.evaluate(X_test, y_test,
+                            batch_size=batch_size,
+                            show_accuracy=True)
 
-print true
-print total
-print float(true)/float(total)
+print('Test score:', score)
+print('Test accuracy:', acc)
+
+model.save_weights('rnn_w3.26.h5')

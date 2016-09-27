@@ -40,34 +40,11 @@ print("")
 # ==================================================
 
 # Load data
-print("Loading data...")
-# x, y, vocabulary, vocabulary_inv = data_helpers.load_data()
-# # Randomly shuffle data
-# np.random.seed(10)
-# shuffle_indices = np.random.permutation(np.arange(len(y)))
-# x_shuffled = x[shuffle_indices]
-# y_shuffled = y[shuffle_indices]
-# # Split train/test set
-# # TODO: This is very crude, should use cross-validation
-# x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
-# y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
-# print("Vocabulary Size: {:d}".format(len(vocabulary)))
-# print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-
-# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+print "Loading data..."
 x_train, y_train, x_dev, y_dev = input_data_w2v()
 print "end load"
-# print "trans"
-# x_train = np.array(x_train)
-# y_train = np.array(y_train)
-# x_dev = np.array(x_dev)
-# y_dev = np.array(y_dev)
-# print "finish trans"
-#
-# print('Pad sequences (samples x time)')
+
 maxlen1 = len(x_train[0])
-# x_train = sequence.pad_sequences(x_train, maxlen=maxlen1)
-# x_dev = sequence.pad_sequences(x_dev, maxlen=maxlen1)
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 # Training
 # ==================================================

@@ -112,26 +112,7 @@ class TextCNN(object):
 
                 print filter_size, "pooling1", pooled.get_shape()
 
-                #  # third convelution-pooling layer
-                # filter_shape3 = [filter_size, 100, num_filters2, num_filters3]
-                # W3 = tf.Variable(tf.truncated_normal(filter_shape3, stddev=0.1), name="W3")
-                # b3 = tf.Variable(tf.constant(0.1, shape=[num_filters3]), name="b3")
-                # conv3 = tf.nn.conv2d(
-                #     pooled2,
-                #     W3,
-                #     strides=[1, 1, 1, 1],
-                #     padding="VALID",
-                #     name="conv3")
-                # # Apply nonlinearity
-                # h = tf.nn.relu(tf.nn.bias_add(conv3, b3), name="relu3")
-                # # Maxpooling over the outputs
-                # pooled3 = tf.nn.avg_pool(
-                #     h,
-                #     ksize=[1, (((sequence_length - filter_size + 1)/2 - filter_size + 1)/2 - filter_size + 1), 1, 1],
-                #     strides=[1, 1, 1, 1],
-                #     padding='VALID',
-                #     name="pool3")
-                #  # third convelution-pooling layer
+
 
                 filter_shape3 = [1, 27, num_filters2, num_filters3]
                 W3 = tf.Variable(tf.truncated_normal(filter_shape3, stddev=0.1), name="W3")

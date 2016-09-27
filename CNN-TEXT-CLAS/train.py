@@ -62,8 +62,7 @@ print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 x_train, y_train, x_dev, y_dev = get_input_data()
 # x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
 num_classes = 2
-#
-# print('Pad sequences (samples x time)')
+
 maxlen1 = len(x_train[0])
 x_train = sequence.pad_sequences(x_train, maxlen=maxlen1)
 x_dev = sequence.pad_sequences(x_dev, maxlen=maxlen1)

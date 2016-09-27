@@ -28,7 +28,6 @@ class TextCNN(object):
             self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
             self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
-        print self.embedded_chars_expanded.get_shape()
         # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []
         for i, filter_size in enumerate(filter_sizes):
@@ -54,8 +53,6 @@ class TextCNN(object):
                 # Apply nonlinearity
                 h = tf.nn.relu(tf.nn.bias_add(bn1, b), name="relu")
 
-
-
                 # Maxpooling over the outputs
                 pooled = tf.nn.max_pool(
                      h,
@@ -64,12 +61,8 @@ class TextCNN(object):
                      padding='VALID',
                      name="pool")
 
-
-
                 pooled_outputs.append(pooled)
-        # print pooled_outputs[0].get_shape()
-        # print pooled_outputs[1].get_shape()
-        # print pooled_outputs[2].get_shape()
+
         # Combine all the pooled features
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(3, pooled_outputs)
@@ -79,14 +72,6 @@ class TextCNN(object):
         with tf.name_scope("dropout"):
             self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
             print "after drop out", self.h_drop.get_shape()
-
-        # with tf.name_scope("fullyConnected"):
-        #     # Fully connected layer
-        #     W = tf.Variable(tf.truncated_normal([num_filters_total, 256], stddev=0.1), name="W")
-        #     b = tf.Variable(tf.constant(0.1, shape=[256]), name="b")
-        #     dense1 = tf.reshape(self.h_drop, [-1, W.get_shape().as_list()[0]]) # Reshape conv2 output to fit dense layer input
-        #     dense1 = tf.nn.relu(tf.add(tf.matmul(dense1, W), b)) # Relu activation
-        #     dense1 = tf.nn.dropout(dense1, self.dropout_keep_prob) # Apply Dropout
 
         # Final (unnormalized) scores and predictions
         with tf.name_scope("output"):

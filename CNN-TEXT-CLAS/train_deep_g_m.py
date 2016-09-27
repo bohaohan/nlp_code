@@ -9,7 +9,7 @@ import datetime
 import data_helpers
 #from get_data_wordv import *
 from text_cnn_ge_save1 import TextCNN
-from pkl_test import load_data
+from get_data_wordv import *
 
 # Parameters
 # ==================================================
@@ -43,44 +43,14 @@ print("")
 # ==================================================
 
 # Load data
-print("Loading data...")
-# x, y, vocabulary, vocabulary_inv = data_helpers.load_data()
-# # Randomly shuffle data
-# np.random.seed(10)
-# shuffle_indices = np.random.permutation(np.arange(len(y)))
-# x_shuffled = x[shuffle_indices]
-# y_shuffled = y[shuffle_indices]
-# # Split train/test set
-# # TODO: This is very crude, should use cross-validation
-# x_train, x_dev = x_shuffled[:-1000], x_shuffled[-1000:]
-# y_train, y_dev = y_shuffled[:-1000], y_shuffled[-1000:]
-# print("Vocabulary Size: {:d}".format(len(vocabulary)))
-# print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
-
-# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
-# try:
-#     x_train, y_train, x_dev, y_dev = load_data()
-# except:
-from get_data_wordv import *
 
 file_name = "result_rm_deep_w2v.txt"
 
-# x_train, y_train, x_dev, y_dev = input_data_gen_w2v()
+print "Loading data..."
 x_train, y_train, x_dev, y_dev = get_input_data()
-# x_train, y_train, x_dev, y_dev = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
 num_classes = len(y_dev[0])
 print "end load"
-# print "trans"
-# x_train = np.array(x_train)
-# y_train = np.array(y_train)
-# x_dev = np.array(x_dev)
-# y_dev = np.array(y_dev)
-# print "finish trans"
-#
-# print('Pad sequences (samples x time)')
 maxlen1 = len(x_train[0])
-# x_train = sequence.pad_sequences(x_train, maxlen=maxlen1)
-# x_dev = sequence.pad_sequences(x_dev, maxlen=maxlen1)
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 # Training
 # ==================================================

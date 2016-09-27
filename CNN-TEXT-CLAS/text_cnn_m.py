@@ -12,8 +12,6 @@ class TextCNN(object):
       embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0, batch_size=64):
 
         # Placeholders for input, output and dropout
-        # self.input_x = tf.placeholder(tf.float32, [None, sequence_length], name="input_x")
-        # self.input_x = tf.placeholder(tf.float32, [None, 30000], name="input_x")
         self.input_x = tf.placeholder(tf.float32, [None, height, embedding_size, 1], name="input_x")
         # [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3]
         self.input_y = tf.placeholder(tf.float32, [None, num_classes], name="input_y")
@@ -21,14 +19,6 @@ class TextCNN(object):
         sentence = self
         # Keeping track of l2 regularization loss (optional)
         l2_loss = tf.constant(0.0)
-
-        # Embedding layer
-        # with tf.device('/cpu:0'), tf.name_scope("embedding"):
-        #     W = tf.Variable(
-        #         tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
-        #         name="W")
-        #     self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
-        #     self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
         # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []

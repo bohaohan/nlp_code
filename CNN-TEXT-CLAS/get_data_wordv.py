@@ -10,6 +10,7 @@ import numpy as np
 import sys
 import nltk
 from os import path
+from get_data import get_label_qa
 reload(sys)
 sys.setdefaultencoding("utf8")
 sys.path.append("..")
@@ -219,14 +220,6 @@ def get_label_rm(label):
     return label
 
 
-def get_label_qa(label):
-    # qa_labels = ['DESC', 'ENTY', 'ABBR', 'HUM', 'NUM', 'LOC']
-    tag = [0 for i in range(6)]
-    # index = qa_labels.index(label)
-    tag[int(label)] = 1
-    return tag
-
-
 def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_func=get_label_rm):
 
 
@@ -260,24 +253,21 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
                 if len(x) > 500:
                     continue
-                # try:
+
                 tag = label_func(tks[1])
 
                 train_words.append(x)
                 train_tags.append(tag)
-                # except:
-                #     pass
+
         test_len = len(train_words)
 
     with open(train_file, 'r') as f1:
 
         for line in f1:
             line = line.replace("\n", "")
-            # line = line.decode('utf-8')
             tks = line.split('-0-')
             word = tks[0]
             words = nltk.word_tokenize(word)
-            # print words
             x = []
             for word in words:
                 if word == "GENE1GENE1":
@@ -291,14 +281,11 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
             if len(x) > 500:
                 continue
-            # try:
             tag = label_func(tks[1])
 
             train_words.append(x)
             train_tags.append(tag)
-            # except:
-            #     pass
-    # print train_words[0]
+
     index = [i for i in range(len(train_words))]
     print "padding"
     train_words = pad_sentences(train_words)
@@ -313,9 +300,6 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
 
     train_len = len(train_words) - test_len
 
-
-
-
     test_words = np.zeros([test_len + 1, len(train_words[0]), 300, 1], dtype=np.float32)
     test_tags = np.zeros([test_len + 1, classes], dtype=np.float32)
     X = np.zeros([train_len, len(train_words[0]), 300, 1], dtype=np.float32)
@@ -328,9 +312,8 @@ def get_input_data(train_file="rm_result.txt", test_file=None, split=0.1, label_
             X[i - test_len] = train_words[index[i]]
             Y[i - test_len] = train_tags[index[i]]
 
-
-
     return X, Y, test_words, test_tags
+
 
 def get_word2vec():
     print "load model"
@@ -342,44 +325,3 @@ def get_word2vec():
 if __name__ == "__main__":
     X, Y, test_words, test_tags = get_input_data(train_file="qa_train.txt", test_file="qa_test.txt", label_func=get_label_qa)
     print X
-    # X = np.array(X, dtype=np.float32)
-    # print X[0]
-    # train_file = "total-data.txt"
-    # n = 0
-    # n1 = 0
-    # n2 = 0
-    # err = 0
-    # # result = "total-data.txt"
-    # # r = open(result, "w+")
-    # with open(train_file, 'r') as f1:
-    #     for line in f1:
-    #         print "line", n
-    #         line = line.decode('utf-8')
-    #         n += 1
-    #         tks = line.split('-0-')
-    #         word = tks[0]
-    #         word2 = tks[3]
-    #         word1 = tks[2]
-    #         # print word1, word2
-    #         # word = word.lower().replace(word1, "gene1")
-    #         #
-    #         # word = word.lower().replace(word2, "gene2")
-    #         words = nltk.word_tokenize(word)
-    #         # # print words
-    #         has1 = False
-    #         has2 = False
-    #         for word in words:
-    #             if word == "GENE1GENE1" and not has1:
-    #                 # print "n1", n1
-    #                 n1 += 1
-    #                 has1 = True
-    #             elif word == "GENE2GENE2" and not has2:
-    #                 # print "n2", n2
-    #                 n2 += 1
-    #                 has2 = True
-    #         if not has1 or not has2:
-    #             err += 1
-    #             print err
-    #
-    #             print words
-    #             print word1, word2
