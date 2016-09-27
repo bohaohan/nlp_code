@@ -10,3 +10,4 @@ word2vec/*
 CNN-TEXT-CLAS/runs/*
 runs/*
 test.py
+*.json
